@@ -1,24 +1,178 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NxF-os-7Dh">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="CinzelDecorative-Regular.ttf">
+            <string>CinzelDecorative-Regular</string>
+        </array>
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ressy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqw-i6-RX9">
+                                <rect key="frame" x="16" y="608" width="361" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="09W-rD-sW6"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="CREATE ACCOUNT">
+                                    <backgroundConfiguration key="background">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                    <color key="baseForegroundColor" red="0.59999999999999998" green="0.6705882353" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="createAccountAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z7R-2l-bB7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmN-Ee-Mm9">
+                                <rect key="frame" x="16" y="676" width="361" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="6a3-LL-5QC"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="SIGN IN">
+                                    <fontDescription key="titleFontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="singInAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3cj-vN-QOp"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4X-gw-CB9">
+                                <rect key="frame" x="81.666666666666686" y="103" width="230" height="232"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="230" id="GPV-sP-b70"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CinzelDecorative-Regular" family="Cinzel Decorative" pointSize="172"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p8b-3P-fsW">
+                                <rect key="frame" x="128.66666666666666" y="763" width="135.99999999999997" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Trouble signing in?">
+                                    <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="troubleAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hGs-bR-SCl"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learn how we process your data in our Privacy Policy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Y8-6X-e5J">
+                                <rect key="frame" x="0.0" y="545" width="393" height="17"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By tapping 'Sign in' you agree to our Terms and Conditions" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrZ-jy-4kx">
+                                <rect key="frame" x="0.0" y="520" width="393" height="17"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="0.61960784310000006" green="0.71764705880000002" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7Y8-6X-e5J" secondAttribute="trailing" id="0HO-L0-LNw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wmN-Ee-Mm9" secondAttribute="trailing" constant="16" id="7SS-JK-rvv"/>
+                            <constraint firstItem="i4X-gw-CB9" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="PgP-1u-s0i"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="p8b-3P-fsW" secondAttribute="bottom" constant="24" id="V96-Uq-o0b"/>
+                            <constraint firstItem="p8b-3P-fsW" firstAttribute="top" secondItem="wmN-Ee-Mm9" secondAttribute="bottom" constant="33" id="WT3-6i-SZj"/>
+                            <constraint firstItem="7Y8-6X-e5J" firstAttribute="top" secondItem="yrZ-jy-4kx" secondAttribute="bottom" constant="8" id="bA8-iD-W4r"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hqw-i6-RX9" secondAttribute="trailing" constant="16" id="dsk-t3-xYB"/>
+                            <constraint firstItem="p8b-3P-fsW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="eV3-sq-6en"/>
+                            <constraint firstItem="yrZ-jy-4kx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fRb-0T-xFV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yrZ-jy-4kx" secondAttribute="trailing" id="gYT-mO-yn5"/>
+                            <constraint firstItem="7Y8-6X-e5J" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="n08-h3-8Iz"/>
+                            <constraint firstItem="hqw-i6-RX9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="uMZ-de-NqZ"/>
+                            <constraint firstItem="hqw-i6-RX9" firstAttribute="top" secondItem="7Y8-6X-e5J" secondAttribute="bottom" constant="46" id="wVK-eJ-c2s"/>
+                            <constraint firstItem="wmN-Ee-Mm9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="wXU-4r-4Wf"/>
+                            <constraint firstItem="wmN-Ee-Mm9" firstAttribute="top" secondItem="hqw-i6-RX9" secondAttribute="bottom" constant="14" id="yvQ-m6-FJ9"/>
+                            <constraint firstItem="i4X-gw-CB9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="zxn-N3-JRi"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="y3K-RQ-89W"/>
+                    <connections>
+                        <outlet property="createAccountButton" destination="hqw-i6-RX9" id="PNK-qI-2fp"/>
+                        <outlet property="privacyLabel" destination="7Y8-6X-e5J" id="7lV-Pm-7YB"/>
+                        <outlet property="singInButton" destination="wmN-Ee-Mm9" id="k3y-fN-5G1"/>
+                        <outlet property="termsLabel" destination="yrZ-jy-4kx" id="Ml6-Bd-sPI"/>
+                        <outlet property="troubleButton" destination="p8b-3P-fsW" id="Evq-rQ-YqG"/>
+                        <segue destination="5iP-iE-fcS" kind="show" identifier="goToRegoster" id="Qkz-0P-VbE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1032.824427480916" y="-28.169014084507044"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="1FY-3t-PSe">
+            <objects>
+                <viewController id="5iP-iE-fcS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yCk-r2-YGT">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Create Your Account" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwJ-T9-Kud">
+                                <rect key="frame" x="16" y="103" width="243" height="102"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="34"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zsF-rg-xcR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1GR-eo-HAP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="thr-GL-6Kn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1809.9236641221373" y="-526.05633802816908"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5Ix-vs-bC8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NxF-os-7Dh" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bC9-WQ-ze6">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="i6y-Tm-59R"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tgt-8P-5Fw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="107.63358778625954" y="-27.464788732394368"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
