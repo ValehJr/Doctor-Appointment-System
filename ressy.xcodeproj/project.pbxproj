@@ -11,6 +11,7 @@
 		1D261CC32B0C428300B09848 /* ViewMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CC22B0C428300B09848 /* ViewMove.swift */; };
 		1D261CC52B0C42D400B09848 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CC42B0C42D400B09848 /* PaddedTextField.swift */; };
 		1D261CC92B0C6E5E00B09848 /* AccountTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CC82B0C6E5E00B09848 /* AccountTypeViewController.swift */; };
+		1D261CCB2B0C734F00B09848 /* RegisterProfessionalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CCA2B0C734F00B09848 /* RegisterProfessionalViewController.swift */; };
 		1D4AD0912B0A465B004117FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0902B0A465B004117FA /* AppDelegate.swift */; };
 		1D4AD0932B0A465B004117FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0922B0A465B004117FA /* SceneDelegate.swift */; };
 		1D4AD0952B0A465B004117FA /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0942B0A465B004117FA /* EntryViewController.swift */; };
@@ -20,7 +21,7 @@
 		1D4AD0A52B0A4688004117FA /* Font in Resources */ = {isa = PBXBuildFile; fileRef = 1D4AD0A42B0A4688004117FA /* Font */; };
 		1D4AD0C92B0A4821004117FA /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0C82B0A4821004117FA /* UITapGestureRecognizer.swift */; };
 		1D4AD0CD2B0A765B004117FA /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0CC2B0A765B004117FA /* NavigationViewController.swift */; };
-		1D4AD0CF2B0A7708004117FA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0CE2B0A7708004117FA /* RegisterViewController.swift */; };
+		1D4AD0CF2B0A7708004117FA /* RegisterCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0CE2B0A7708004117FA /* RegisterCustomerViewController.swift */; };
 		1D4AD0D22B0A7A84004117FA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		1D261CC42B0C42D400B09848 /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		1D261CC72B0C4F4C00B09848 /* ressy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ressy.entitlements; sourceTree = "<group>"; };
 		1D261CC82B0C6E5E00B09848 /* AccountTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTypeViewController.swift; sourceTree = "<group>"; };
+		1D261CCA2B0C734F00B09848 /* RegisterProfessionalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProfessionalViewController.swift; sourceTree = "<group>"; };
 		1D4AD08D2B0A465B004117FA /* ressy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ressy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D4AD0902B0A465B004117FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D4AD0922B0A465B004117FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,7 +43,7 @@
 		1D4AD0A42B0A4688004117FA /* Font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Font; sourceTree = "<group>"; };
 		1D4AD0C82B0A4821004117FA /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
 		1D4AD0CC2B0A765B004117FA /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
-		1D4AD0CE2B0A7708004117FA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		1D4AD0CE2B0A7708004117FA /* RegisterCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCustomerViewController.swift; sourceTree = "<group>"; };
 		1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,9 +107,10 @@
 			isa = PBXGroup;
 			children = (
 				1D4AD0942B0A465B004117FA /* EntryViewController.swift */,
-				1D4AD0CE2B0A7708004117FA /* RegisterViewController.swift */,
-				1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */,
 				1D261CC82B0C6E5E00B09848 /* AccountTypeViewController.swift */,
+				1D4AD0CE2B0A7708004117FA /* RegisterCustomerViewController.swift */,
+				1D261CCA2B0C734F00B09848 /* RegisterProfessionalViewController.swift */,
+				1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D261CCB2B0C734F00B09848 /* RegisterProfessionalViewController.swift in Sources */,
 				1D261CC32B0C428300B09848 /* ViewMove.swift in Sources */,
 				1D261CC52B0C42D400B09848 /* PaddedTextField.swift in Sources */,
 				1D261CC12B0C426500B09848 /* KeyboardHide.swift in Sources */,
@@ -191,7 +195,7 @@
 				1D4AD0952B0A465B004117FA /* EntryViewController.swift in Sources */,
 				1D4AD0C92B0A4821004117FA /* UITapGestureRecognizer.swift in Sources */,
 				1D4AD0912B0A465B004117FA /* AppDelegate.swift in Sources */,
-				1D4AD0CF2B0A7708004117FA /* RegisterViewController.swift in Sources */,
+				1D4AD0CF2B0A7708004117FA /* RegisterCustomerViewController.swift in Sources */,
 				1D4AD0CD2B0A765B004117FA /* NavigationViewController.swift in Sources */,
 				1D261CC92B0C6E5E00B09848 /* AccountTypeViewController.swift in Sources */,
 				1D4AD0932B0A465B004117FA /* SceneDelegate.swift in Sources */,

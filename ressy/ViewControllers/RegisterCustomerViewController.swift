@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterCustomerViewController: UIViewController {
 
     @IBOutlet weak var confirmPasswordHideButton: UIButton!
     @IBOutlet weak var passwordHideButton: UIButton!

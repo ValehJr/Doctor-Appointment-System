@@ -16,7 +16,6 @@ class EntryViewController: UIViewController {
     @IBOutlet weak var termsLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         self.termsLabel.isUserInteractionEnabled = true
         self.privacyLabel.isUserInteractionEnabled = true
@@ -51,6 +50,7 @@ class EntryViewController: UIViewController {
         self.singInButton.clipsToBounds = true
         
         self.createAccountButton.layer.cornerRadius = 26
+        
         self.singInButton.layer.cornerRadius = 26
         self.singInButton.layer.borderColor = UIColor.white.cgColor
         self.singInButton.layer.borderWidth = 1
@@ -58,7 +58,7 @@ class EntryViewController: UIViewController {
     
     @IBAction func createAccountAction(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let registerVC = storyboard.instantiateViewController(withIdentifier: "registerVC") as! RegisterViewController
+        let registerVC = storyboard.instantiateViewController(withIdentifier: "accountTypeVC") as! AccountTypeViewController
         self.navigationController?.pushViewController(registerVC, animated: true)
     }
     
