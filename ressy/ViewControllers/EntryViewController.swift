@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class EntryViewController: UIViewController {
     
     @IBOutlet weak var troubleButton: UIButton!
     @IBOutlet weak var singInButton: UIButton!
@@ -57,10 +57,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func createAccountAction(_ sender: Any) {
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let registerVC = storyboard.instantiateViewController(withIdentifier: "registerVC") as! RegisterViewController
+        self.navigationController?.pushViewController(registerVC, animated: true)
     }
+    
     @IBAction func singInAction(_ sender: Any) {
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
+        self.navigationController?.pushViewController(loginVC, animated: true)
     }
     
     @IBAction func troubleAction(_ sender: Any) {
@@ -82,5 +87,7 @@ class ViewController: UIViewController {
         } else if gesture.didTapAttributedTextInLabel(label: self.termsLabel, inRange: termsRange){
             print("user tapped on terms and conditions text")
         }
+    }
+    @IBAction func unwindToEntryViewController(segue: UIStoryboardSegue) {
     }
 }

@@ -7,22 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D261CC12B0C426500B09848 /* KeyboardHide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CC02B0C426500B09848 /* KeyboardHide.swift */; };
+		1D261CC32B0C428300B09848 /* ViewMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CC22B0C428300B09848 /* ViewMove.swift */; };
+		1D261CC52B0C42D400B09848 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CC42B0C42D400B09848 /* PaddedTextField.swift */; };
+		1D261CC92B0C6E5E00B09848 /* AccountTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CC82B0C6E5E00B09848 /* AccountTypeViewController.swift */; };
 		1D4AD0912B0A465B004117FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0902B0A465B004117FA /* AppDelegate.swift */; };
 		1D4AD0932B0A465B004117FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0922B0A465B004117FA /* SceneDelegate.swift */; };
-		1D4AD0952B0A465B004117FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0942B0A465B004117FA /* ViewController.swift */; };
+		1D4AD0952B0A465B004117FA /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0942B0A465B004117FA /* EntryViewController.swift */; };
 		1D4AD0982B0A465B004117FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D4AD0962B0A465B004117FA /* Main.storyboard */; };
 		1D4AD09A2B0A465C004117FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D4AD0992B0A465C004117FA /* Assets.xcassets */; };
 		1D4AD09D2B0A465C004117FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D4AD09B2B0A465C004117FA /* LaunchScreen.storyboard */; };
 		1D4AD0A52B0A4688004117FA /* Font in Resources */ = {isa = PBXBuildFile; fileRef = 1D4AD0A42B0A4688004117FA /* Font */; };
 		1D4AD0C92B0A4821004117FA /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0C82B0A4821004117FA /* UITapGestureRecognizer.swift */; };
 		1D4AD0CD2B0A765B004117FA /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0CC2B0A765B004117FA /* NavigationViewController.swift */; };
+		1D4AD0CF2B0A7708004117FA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0CE2B0A7708004117FA /* RegisterViewController.swift */; };
+		1D4AD0D22B0A7A84004117FA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D261CC02B0C426500B09848 /* KeyboardHide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHide.swift; sourceTree = "<group>"; };
+		1D261CC22B0C428300B09848 /* ViewMove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMove.swift; sourceTree = "<group>"; };
+		1D261CC42B0C42D400B09848 /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
+		1D261CC72B0C4F4C00B09848 /* ressy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ressy.entitlements; sourceTree = "<group>"; };
+		1D261CC82B0C6E5E00B09848 /* AccountTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTypeViewController.swift; sourceTree = "<group>"; };
 		1D4AD08D2B0A465B004117FA /* ressy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ressy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D4AD0902B0A465B004117FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D4AD0922B0A465B004117FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1D4AD0942B0A465B004117FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1D4AD0942B0A465B004117FA /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		1D4AD0972B0A465B004117FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1D4AD0992B0A465C004117FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D4AD09C2B0A465C004117FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -30,6 +41,8 @@
 		1D4AD0A42B0A4688004117FA /* Font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Font; sourceTree = "<group>"; };
 		1D4AD0C82B0A4821004117FA /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
 		1D4AD0CC2B0A765B004117FA /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		1D4AD0CE2B0A7708004117FA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +56,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D261CC62B0C42E500B09848 /* DesignStuff */ = {
+			isa = PBXGroup;
+			children = (
+				1D4AD0CC2B0A765B004117FA /* NavigationViewController.swift */,
+				1D261CC02B0C426500B09848 /* KeyboardHide.swift */,
+				1D261CC42B0C42D400B09848 /* PaddedTextField.swift */,
+				1D261CC22B0C428300B09848 /* ViewMove.swift */,
+			);
+			path = DesignStuff;
+			sourceTree = "<group>";
+		};
 		1D4AD0842B0A465B004117FA = {
 			isa = PBXGroup;
 			children = (
@@ -62,18 +86,30 @@
 		1D4AD08F2B0A465B004117FA /* ressy */ = {
 			isa = PBXGroup;
 			children = (
+				1D261CC72B0C4F4C00B09848 /* ressy.entitlements */,
 				1D4AD0902B0A465B004117FA /* AppDelegate.swift */,
 				1D4AD0922B0A465B004117FA /* SceneDelegate.swift */,
-				1D4AD0942B0A465B004117FA /* ViewController.swift */,
 				1D4AD0962B0A465B004117FA /* Main.storyboard */,
+				1D4AD0D02B0A7751004117FA /* ViewControllers */,
 				1D4AD0992B0A465C004117FA /* Assets.xcassets */,
 				1D4AD09B2B0A465C004117FA /* LaunchScreen.storyboard */,
 				1D4AD0A42B0A4688004117FA /* Font */,
 				1D4AD09E2B0A465C004117FA /* Info.plist */,
 				1D4AD0C82B0A4821004117FA /* UITapGestureRecognizer.swift */,
-				1D4AD0CC2B0A765B004117FA /* NavigationViewController.swift */,
+				1D261CC62B0C42E500B09848 /* DesignStuff */,
 			);
 			path = ressy;
+			sourceTree = "<group>";
+		};
+		1D4AD0D02B0A7751004117FA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1D4AD0942B0A465B004117FA /* EntryViewController.swift */,
+				1D4AD0CE2B0A7708004117FA /* RegisterViewController.swift */,
+				1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */,
+				1D261CC82B0C6E5E00B09848 /* AccountTypeViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,10 +184,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D4AD0952B0A465B004117FA /* ViewController.swift in Sources */,
+				1D261CC32B0C428300B09848 /* ViewMove.swift in Sources */,
+				1D261CC52B0C42D400B09848 /* PaddedTextField.swift in Sources */,
+				1D261CC12B0C426500B09848 /* KeyboardHide.swift in Sources */,
+				1D4AD0D22B0A7A84004117FA /* LoginViewController.swift in Sources */,
+				1D4AD0952B0A465B004117FA /* EntryViewController.swift in Sources */,
 				1D4AD0C92B0A4821004117FA /* UITapGestureRecognizer.swift in Sources */,
 				1D4AD0912B0A465B004117FA /* AppDelegate.swift in Sources */,
+				1D4AD0CF2B0A7708004117FA /* RegisterViewController.swift in Sources */,
 				1D4AD0CD2B0A765B004117FA /* NavigationViewController.swift in Sources */,
+				1D261CC92B0C6E5E00B09848 /* AccountTypeViewController.swift in Sources */,
 				1D4AD0932B0A465B004117FA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +344,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+				CODE_SIGN_ENTITLEMENTS = ressy/ressy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W8RLJ8MS39;
@@ -330,6 +374,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+				CODE_SIGN_ENTITLEMENTS = ressy/ressy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W8RLJ8MS39;

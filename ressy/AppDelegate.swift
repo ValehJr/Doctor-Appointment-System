@@ -14,6 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let backButtonBlack = UIImage(named: "backIcon")?.withRenderingMode(.alwaysOriginal)
+        UINavigationBar.appearance().backIndicatorImage = backButtonBlack
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonBlack
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for: .default)
         return true
     }
 
