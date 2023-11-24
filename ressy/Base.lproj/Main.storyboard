@@ -11,6 +11,9 @@
         <array key="CinzelDecorative-Regular.ttf">
             <string>CinzelDecorative-Regular</string>
         </array>
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
         <array key="Poppins-Regular.ttf">
             <string>Poppins-Regular</string>
         </array>
@@ -138,7 +141,7 @@
                                     <constraint firstAttribute="height" constant="56" id="gDO-vr-ybK"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSD-nN-fvd">
@@ -157,7 +160,7 @@
                                     <constraint firstAttribute="height" constant="56" id="Jkr-Bn-RzC"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81l-iQ-oSd">
@@ -177,7 +180,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFm-w0-il5">
-                                <rect key="frame" x="126.5" y="509" width="161.5" height="30.5"/>
+                                <rect key="frame" x="118" y="509" width="178" height="34"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Forgot the password?">
                                     <fontDescription key="titleFontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
@@ -226,6 +229,71 @@
             </objects>
             <point key="canvasLocation" x="1849" y="352"/>
         </scene>
+        <!--Forget Password View Controller-->
+        <scene sceneID="DaN-EE-DKQ">
+            <objects>
+                <viewController storyboardIdentifier="forgetPasswordVC" id="qGR-q1-fsh" customClass="ForgetPasswordViewController" customModule="ressy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U4P-eC-jS9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forget Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxv-AZ-MXB">
+                                <rect key="frame" x="37" y="48" width="348" height="34"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S25-ws-Pb0" customClass="PaddedTextField" customModule="ressy" customModuleProvider="target">
+                                <rect key="frame" x="25" y="293" width="364" height="56"/>
+                                <color key="backgroundColor" red="0.95686274770000002" green="0.95686274770000002" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="tqy-6D-AKz"/>
+                                </constraints>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c3N-19-t5G">
+                                <rect key="frame" x="25" y="381" width="364" height="52"/>
+                                <color key="backgroundColor" red="0.57254901960000004" green="0.67424986600000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="EPi-EV-Gvm"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Send a letter">
+                                    <fontDescription key="titleFontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="createAccountAction:" destination="5iP-iE-fcS" eventType="touchUpInside" id="gmf-ec-KCp"/>
+                                    <action selector="sendAction:" destination="qGR-q1-fsh" eventType="touchUpInside" id="LUw-FX-Wur"/>
+                                    <action selector="singInAction:" destination="6gd-8I-cg2" eventType="touchUpInside" id="ktE-XA-jkF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tuj-7V-zxM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="S25-ws-Pb0" firstAttribute="leading" secondItem="tuj-7V-zxM" secondAttribute="leading" constant="25" id="3H5-pb-RUY"/>
+                            <constraint firstItem="c3N-19-t5G" firstAttribute="leading" secondItem="tuj-7V-zxM" secondAttribute="leading" constant="25" id="4pB-Jt-BZp"/>
+                            <constraint firstItem="lxv-AZ-MXB" firstAttribute="leading" secondItem="tuj-7V-zxM" secondAttribute="leading" constant="37" id="O6w-1q-thk"/>
+                            <constraint firstItem="tuj-7V-zxM" firstAttribute="trailing" secondItem="S25-ws-Pb0" secondAttribute="trailing" constant="25" id="Otm-sD-gvH"/>
+                            <constraint firstItem="S25-ws-Pb0" firstAttribute="top" secondItem="lxv-AZ-MXB" secondAttribute="bottom" constant="211" id="aQy-gu-q0m"/>
+                            <constraint firstItem="lxv-AZ-MXB" firstAttribute="top" secondItem="tuj-7V-zxM" secondAttribute="top" id="ccd-WZ-UHx"/>
+                            <constraint firstItem="tuj-7V-zxM" firstAttribute="trailing" secondItem="c3N-19-t5G" secondAttribute="trailing" constant="25" id="iGl-De-QAD"/>
+                            <constraint firstItem="tuj-7V-zxM" firstAttribute="trailing" secondItem="lxv-AZ-MXB" secondAttribute="trailing" constant="29" id="qyh-nx-SZi"/>
+                            <constraint firstItem="c3N-19-t5G" firstAttribute="top" secondItem="S25-ws-Pb0" secondAttribute="bottom" constant="32" id="yHj-NT-nfj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailField" destination="S25-ws-Pb0" id="gB0-Sc-6jb"/>
+                        <outlet property="sendButton" destination="c3N-19-t5G" id="HhN-aH-NzC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="72G-lr-VBj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2744.9275362318845" y="351.5625"/>
+        </scene>
         <!--Register Customer View Controller-->
         <scene sceneID="1FY-3t-PSe">
             <objects>
@@ -250,7 +318,7 @@
                                     <constraint firstAttribute="height" constant="56" id="G8M-yg-hgG"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7F9-sd-pbH" customClass="PaddedTextField" customModule="ressy" customModuleProvider="target">
@@ -260,7 +328,7 @@
                                     <constraint firstAttribute="height" constant="56" id="Hp8-eb-xPV"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dgm-wg-bHC" customClass="PaddedTextField" customModule="ressy" customModuleProvider="target">
@@ -270,7 +338,7 @@
                                     <constraint firstAttribute="height" constant="56" id="KL2-CV-BGp"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kbu-lI-JfL" customClass="PaddedTextField" customModule="ressy" customModuleProvider="target">
@@ -280,7 +348,7 @@
                                     <constraint firstAttribute="height" constant="56" id="7t9-iq-dHe"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bGO-VJ-Qm6">
@@ -386,7 +454,7 @@
                                     <constraint firstAttribute="height" constant="56" id="0rM-XF-Ebc"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pqy-7b-npG" customClass="PaddedTextField" customModule="ressy" customModuleProvider="target">
@@ -396,7 +464,7 @@
                                     <constraint firstAttribute="height" constant="56" id="uid-us-HzM"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r8F-96-Lr8" customClass="PaddedTextField" customModule="ressy" customModuleProvider="target">
@@ -406,7 +474,7 @@
                                     <constraint firstAttribute="height" constant="56" id="Xa3-3U-KyF"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HE4-gG-bsa" customClass="PaddedTextField" customModule="ressy" customModuleProvider="target">
@@ -416,7 +484,7 @@
                                     <constraint firstAttribute="height" constant="56" id="72E-ZY-oWT"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZX-c3-F3w">
@@ -460,7 +528,7 @@
                                     <constraint firstAttribute="height" constant="56" id="lXC-ty-d8s"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                         </subviews>
@@ -499,11 +567,13 @@
                     </view>
                     <connections>
                         <outlet property="confirmPasswordField" destination="HE4-gG-bsa" id="bOj-zp-cYm"/>
+                        <outlet property="confirmPasswordHideButton" destination="mZX-c3-F3w" id="hjP-e6-C4Q"/>
                         <outlet property="createAccountButton" destination="8EQ-KS-UcX" id="ZEE-yO-Ois"/>
                         <outlet property="emailField" destination="pqy-7b-npG" id="goc-du-RCK"/>
                         <outlet property="fieldChooseField" destination="rH1-Pz-SBO" id="mrW-C9-ts5"/>
                         <outlet property="nameField" destination="XcL-xi-O57" id="rMo-Wy-KLd"/>
                         <outlet property="passwordField" destination="r8F-96-Lr8" id="DTA-Gl-BrP"/>
+                        <outlet property="passwordHideButton" destination="v5t-JG-MhS" id="Pmj-ZB-Fjc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ajk-6O-mOS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -513,17 +583,114 @@
         <!--View Controller-->
         <scene sceneID="CEK-Rz-dDe">
             <objects>
-                <viewController storyboardIdentifier="otpVC" id="CQW-6A-9L7" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="otpVC" id="CQW-6A-9L7" customClass="OTPViewController" customModule="ressy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MLj-u4-kZF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the code that was sent to your email address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZM-Fo-t5P">
+                                <rect key="frame" x="20" y="48" width="374" height="229"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="229" id="hC7-eL-58c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="34"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="AEF-a2-0G9">
+                                <rect key="frame" x="67" y="385" width="281" height="55"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="X" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hOG-l0-kif">
+                                        <rect key="frame" x="0.0" y="0.0" width="55.5" height="55"/>
+                                        <color key="backgroundColor" red="0.95294117647058818" green="0.95686274509803915" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="28"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="X" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PRT-s5-upR">
+                                        <rect key="frame" x="75.5" y="0.0" width="55" height="55"/>
+                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95686274510000002" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="28"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="X" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fIo-Qy-Zam">
+                                        <rect key="frame" x="150.5" y="0.0" width="55.5" height="55"/>
+                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95686274510000002" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="28"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="X" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BZD-iQ-rtP">
+                                        <rect key="frame" x="226" y="0.0" width="55" height="55"/>
+                                        <color key="backgroundColor" red="0.95294117649999999" green="0.95686274510000002" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="28"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="gWW-BT-vV4"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khm-pP-wPM">
+                                <rect key="frame" x="25" y="550" width="364" height="52"/>
+                                <color key="backgroundColor" red="0.57254901960000004" green="0.67424986600000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="epM-XS-778"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Submit">
+                                    <fontDescription key="titleFontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="createAccountAction:" destination="5iP-iE-fcS" eventType="touchUpInside" id="sZo-cb-aah"/>
+                                    <action selector="createAccountAction:" destination="3Ww-QS-aGp" eventType="touchUpInside" id="v0H-P0-mPm"/>
+                                    <action selector="submitAction:" destination="CQW-6A-9L7" eventType="touchUpInside" id="FZv-ln-ucv"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="LzZ-LD-1de"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LzZ-LD-1de" firstAttribute="trailing" secondItem="AEF-a2-0G9" secondAttribute="trailing" constant="66" id="FQA-UO-Wcy"/>
+                            <constraint firstItem="khm-pP-wPM" firstAttribute="top" secondItem="AEF-a2-0G9" secondAttribute="bottom" constant="110" id="I0h-iY-CV5"/>
+                            <constraint firstItem="AEF-a2-0G9" firstAttribute="leading" secondItem="LzZ-LD-1de" secondAttribute="leading" constant="67" id="K5t-Ip-Bsg"/>
+                            <constraint firstItem="sZM-Fo-t5P" firstAttribute="top" secondItem="LzZ-LD-1de" secondAttribute="top" id="KW0-J1-l8c"/>
+                            <constraint firstItem="LzZ-LD-1de" firstAttribute="leading" secondItem="sZM-Fo-t5P" secondAttribute="leading" constant="-20" id="RV4-Y3-PbK"/>
+                            <constraint firstItem="sZM-Fo-t5P" firstAttribute="trailing" secondItem="LzZ-LD-1de" secondAttribute="trailing" constant="-20" id="bCb-kR-1vH"/>
+                            <constraint firstItem="AEF-a2-0G9" firstAttribute="top" secondItem="sZM-Fo-t5P" secondAttribute="bottom" constant="108" id="lSP-0Q-9Bb"/>
+                            <constraint firstItem="LzZ-LD-1de" firstAttribute="trailing" secondItem="khm-pP-wPM" secondAttribute="trailing" constant="25" id="skp-f6-uDn"/>
+                            <constraint firstItem="khm-pP-wPM" firstAttribute="leading" secondItem="LzZ-LD-1de" secondAttribute="leading" constant="25" id="xmz-XW-Qig"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="firstField" destination="hOG-l0-kif" id="akA-MY-ZTC"/>
+                        <outlet property="fourthField" destination="BZD-iQ-rtP" id="8X0-cM-CaT"/>
+                        <outlet property="secondField" destination="PRT-s5-upR" id="OuN-jm-LDf"/>
+                        <outlet property="submitButton" destination="khm-pP-wPM" id="S8O-zl-laW"/>
+                        <outlet property="thirdField" destination="fIo-Qy-Zam" id="lYb-YD-69w"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TAR-1b-W2F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4086" y="-356"/>
+            <point key="canvasLocation" x="4085.507246376812" y="-356.25"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="w20-Vo-BZe">
+            <objects>
+                <viewController storyboardIdentifier="mainVC" id="UGG-Qz-L5m" customClass="MainViewController" customModule="ressy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b5j-gg-sil">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="j5l-4z-4OP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k58-sc-D41" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4996" y="91"/>
         </scene>
         <!--Account Type View Controller-->
         <scene sceneID="72A-Vo-XRc">
@@ -543,7 +710,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SB1-Ki-QuF">
-                                <rect key="frame" x="25" y="312" width="363" height="52"/>
+                                <rect key="frame" x="25" y="387" width="363" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="6dY-Mu-vAP"/>
                                 </constraints>
@@ -558,7 +725,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVu-vt-KWd">
-                                <rect key="frame" x="25" y="417" width="363" height="52"/>
+                                <rect key="frame" x="26" y="457" width="363" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="Fyd-Ya-6WH"/>
                                 </constraints>
@@ -576,13 +743,13 @@
                         <color key="backgroundColor" red="0.57254901960000004" green="0.63921568630000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="inu-3Q-uhv" firstAttribute="top" secondItem="xj6-6f-ftc" secondAttribute="top" id="1Ac-Yp-B2p"/>
-                            <constraint firstItem="xj6-6f-ftc" firstAttribute="trailing" secondItem="FVu-vt-KWd" secondAttribute="trailing" constant="26" id="8Nc-od-p7Z"/>
-                            <constraint firstItem="FVu-vt-KWd" firstAttribute="top" secondItem="SB1-Ki-QuF" secondAttribute="bottom" constant="53" id="IXj-2n-s83"/>
-                            <constraint firstItem="SB1-Ki-QuF" firstAttribute="top" secondItem="inu-3Q-uhv" secondAttribute="bottom" constant="162" id="Nn1-JH-jSh"/>
+                            <constraint firstItem="xj6-6f-ftc" firstAttribute="trailing" secondItem="FVu-vt-KWd" secondAttribute="trailing" constant="25" id="8Nc-od-p7Z"/>
+                            <constraint firstItem="FVu-vt-KWd" firstAttribute="top" secondItem="SB1-Ki-QuF" secondAttribute="bottom" constant="18" id="IXj-2n-s83"/>
+                            <constraint firstItem="SB1-Ki-QuF" firstAttribute="top" secondItem="inu-3Q-uhv" secondAttribute="bottom" constant="237" id="Nn1-JH-jSh"/>
                             <constraint firstItem="xj6-6f-ftc" firstAttribute="trailing" secondItem="SB1-Ki-QuF" secondAttribute="trailing" constant="26" id="btF-qX-GB0"/>
                             <constraint firstItem="inu-3Q-uhv" firstAttribute="trailing" secondItem="xj6-6f-ftc" secondAttribute="trailing" constant="-16" id="cc6-wN-Pma"/>
                             <constraint firstItem="inu-3Q-uhv" firstAttribute="leading" secondItem="xj6-6f-ftc" secondAttribute="leading" constant="16" id="g5Q-Zq-kcb"/>
-                            <constraint firstItem="FVu-vt-KWd" firstAttribute="leading" secondItem="xj6-6f-ftc" secondAttribute="leading" constant="25" id="h2k-Ye-0mt"/>
+                            <constraint firstItem="FVu-vt-KWd" firstAttribute="leading" secondItem="xj6-6f-ftc" secondAttribute="leading" constant="26" id="h2k-Ye-0mt"/>
                             <constraint firstItem="SB1-Ki-QuF" firstAttribute="leading" secondItem="xj6-6f-ftc" secondAttribute="leading" constant="25" id="zAu-zB-gq4"/>
                         </constraints>
                     </view>

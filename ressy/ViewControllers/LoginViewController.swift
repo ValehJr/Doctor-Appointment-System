@@ -40,6 +40,10 @@ class LoginViewController: UIViewController {
     
     @IBAction func forgotPasswordAction(_ sender: Any) {
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let forgetVC = storyboard.instantiateViewController(withIdentifier: "forgetPasswordVC") as! ForgetPasswordViewController
+        self.navigationController?.pushViewController(forgetVC, animated: true)
+        
     }
     @IBAction func hidePasswordAction(_ sender: Any) {
         if passwordField.isSecureTextEntry{

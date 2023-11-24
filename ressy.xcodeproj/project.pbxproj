@@ -12,6 +12,8 @@
 		1D261CC52B0C42D400B09848 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CC42B0C42D400B09848 /* PaddedTextField.swift */; };
 		1D261CC92B0C6E5E00B09848 /* AccountTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CC82B0C6E5E00B09848 /* AccountTypeViewController.swift */; };
 		1D261CCB2B0C734F00B09848 /* RegisterProfessionalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CCA2B0C734F00B09848 /* RegisterProfessionalViewController.swift */; };
+		1D261CCD2B0C7B6A00B09848 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CCC2B0C7B6A00B09848 /* OTPViewController.swift */; };
+		1D4905932B0F520D00C0FECE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4905922B0F520D00C0FECE /* MainViewController.swift */; };
 		1D4AD0912B0A465B004117FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0902B0A465B004117FA /* AppDelegate.swift */; };
 		1D4AD0932B0A465B004117FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0922B0A465B004117FA /* SceneDelegate.swift */; };
 		1D4AD0952B0A465B004117FA /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0942B0A465B004117FA /* EntryViewController.swift */; };
@@ -23,6 +25,7 @@
 		1D4AD0CD2B0A765B004117FA /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0CC2B0A765B004117FA /* NavigationViewController.swift */; };
 		1D4AD0CF2B0A7708004117FA /* RegisterCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0CE2B0A7708004117FA /* RegisterCustomerViewController.swift */; };
 		1D4AD0D22B0A7A84004117FA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */; };
+		1DA7C11F2B10639800C6EEB9 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA7C11E2B10639800C6EEB9 /* ForgetPasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,8 @@
 		1D261CC72B0C4F4C00B09848 /* ressy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ressy.entitlements; sourceTree = "<group>"; };
 		1D261CC82B0C6E5E00B09848 /* AccountTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTypeViewController.swift; sourceTree = "<group>"; };
 		1D261CCA2B0C734F00B09848 /* RegisterProfessionalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProfessionalViewController.swift; sourceTree = "<group>"; };
+		1D261CCC2B0C7B6A00B09848 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
+		1D4905922B0F520D00C0FECE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1D4AD08D2B0A465B004117FA /* ressy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ressy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D4AD0902B0A465B004117FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D4AD0922B0A465B004117FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +50,7 @@
 		1D4AD0CC2B0A765B004117FA /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		1D4AD0CE2B0A7708004117FA /* RegisterCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCustomerViewController.swift; sourceTree = "<group>"; };
 		1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1DA7C11E2B10639800C6EEB9 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,9 +101,9 @@
 				1D4AD0D02B0A7751004117FA /* ViewControllers */,
 				1D4AD0992B0A465C004117FA /* Assets.xcassets */,
 				1D4AD09B2B0A465C004117FA /* LaunchScreen.storyboard */,
-				1D4AD0A42B0A4688004117FA /* Font */,
 				1D4AD09E2B0A465C004117FA /* Info.plist */,
 				1D4AD0C82B0A4821004117FA /* UITapGestureRecognizer.swift */,
+				1D4AD0A42B0A4688004117FA /* Font */,
 				1D261CC62B0C42E500B09848 /* DesignStuff */,
 			);
 			path = ressy;
@@ -110,7 +116,10 @@
 				1D261CC82B0C6E5E00B09848 /* AccountTypeViewController.swift */,
 				1D4AD0CE2B0A7708004117FA /* RegisterCustomerViewController.swift */,
 				1D261CCA2B0C734F00B09848 /* RegisterProfessionalViewController.swift */,
+				1D261CCC2B0C7B6A00B09848 /* OTPViewController.swift */,
 				1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */,
+				1DA7C11E2B10639800C6EEB9 /* ForgetPasswordViewController.swift */,
+				1D4905922B0F520D00C0FECE /* MainViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -189,10 +198,13 @@
 			files = (
 				1D261CCB2B0C734F00B09848 /* RegisterProfessionalViewController.swift in Sources */,
 				1D261CC32B0C428300B09848 /* ViewMove.swift in Sources */,
+				1D261CCD2B0C7B6A00B09848 /* OTPViewController.swift in Sources */,
 				1D261CC52B0C42D400B09848 /* PaddedTextField.swift in Sources */,
 				1D261CC12B0C426500B09848 /* KeyboardHide.swift in Sources */,
 				1D4AD0D22B0A7A84004117FA /* LoginViewController.swift in Sources */,
 				1D4AD0952B0A465B004117FA /* EntryViewController.swift in Sources */,
+				1DA7C11F2B10639800C6EEB9 /* ForgetPasswordViewController.swift in Sources */,
+				1D4905932B0F520D00C0FECE /* MainViewController.swift in Sources */,
 				1D4AD0C92B0A4821004117FA /* UITapGestureRecognizer.swift in Sources */,
 				1D4AD0912B0A465B004117FA /* AppDelegate.swift in Sources */,
 				1D4AD0CF2B0A7708004117FA /* RegisterCustomerViewController.swift in Sources */,

@@ -32,7 +32,7 @@ extension UITapGestureRecognizer {
                                                      y: locationOfTouchInLabel.y - textContainerOffset.y);
         var indexOfCharacter = layoutManager.characterIndex(for: locationOfTouchInTextContainer, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
         indexOfCharacter = indexOfCharacter + 1
-        
+
         return NSLocationInRange(indexOfCharacter, targetRange)
     }
     
