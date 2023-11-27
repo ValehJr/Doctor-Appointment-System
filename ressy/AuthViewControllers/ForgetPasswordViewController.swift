@@ -27,7 +27,12 @@ class ForgetPasswordViewController: UIViewController {
             return
         }
         
-        let url = URL(string: "http://ec2-34-241-107-14.eu-west-1.compute.amazonaws.com:8080/auth/forgot?email=\(email)")!
+        if !isValidEmail(email: email) {
+            showAlert(message: "Please enter a valid email address.")
+            return
+        }
+        
+        let url = URL(string: "http://ec2-34-248-7-102.eu-west-1.compute.amazonaws.com:8080/auth/forgot?email=\(email)")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
@@ -40,13 +45,20 @@ class ForgetPasswordViewController: UIViewController {
             } else {
                 
                 DispatchQueue.main.async {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
-                    self.navigationController?.pushViewController(loginVC, animated: true)
-                    print("Password reset email sent successfully")
+                    self.navigateToOTPViewController()
+                    self.showSuccess(message: "The reset link was sent to your email. Please check your inbox or spam!")
                 }
             }
         }.resume()
+    }
+    
+    
+    
+    private func navigateToOTPViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let otpVC = storyboard.instantiateViewController(withIdentifier: "otpForgetVC") as! ForgetOTPViewController
+        otpVC.email = emailField.text
+        navigationController?.pushViewController(otpVC, animated: true)
     }
 }
 

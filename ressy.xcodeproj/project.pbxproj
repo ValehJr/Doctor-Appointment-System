@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D261CC12B0C426500B09848 /* KeyboardHide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CC02B0C426500B09848 /* KeyboardHide.swift */; };
+		1D0684D92B10A41C00EE2C8D /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 1D0684D82B10A41C00EE2C8D /* JWTDecode */; };
+		1D261CC12B0C426500B09848 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CC02B0C426500B09848 /* ViewControllerExtension.swift */; };
 		1D261CC32B0C428300B09848 /* ViewMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CC22B0C428300B09848 /* ViewMove.swift */; };
 		1D261CC52B0C42D400B09848 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CC42B0C42D400B09848 /* PaddedTextField.swift */; };
 		1D261CC92B0C6E5E00B09848 /* AccountTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CC82B0C6E5E00B09848 /* AccountTypeViewController.swift */; };
 		1D261CCB2B0C734F00B09848 /* RegisterProfessionalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CCA2B0C734F00B09848 /* RegisterProfessionalViewController.swift */; };
-		1D261CCD2B0C7B6A00B09848 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CCC2B0C7B6A00B09848 /* OTPViewController.swift */; };
+		1D261CCD2B0C7B6A00B09848 /* ConfirmOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D261CCC2B0C7B6A00B09848 /* ConfirmOTPViewController.swift */; };
+		1D3430882B13128D0095CDBF /* ForgetOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3430872B13128D0095CDBF /* ForgetOTPViewController.swift */; };
+		1D34308A2B13130B0095CDBF /* CreateNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3430892B13130B0095CDBF /* CreateNewPasswordViewController.swift */; };
+		1D34308C2B134C270095CDBF /* CustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34308B2B134C270095CDBF /* CustomSwitch.swift */; };
+		1D34308E2B1399E40095CDBF /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D34308D2B1399E40095CDBF /* MainTabViewController.swift */; };
 		1D4905932B0F520D00C0FECE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4905922B0F520D00C0FECE /* MainViewController.swift */; };
 		1D4AD0912B0A465B004117FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0902B0A465B004117FA /* AppDelegate.swift */; };
 		1D4AD0932B0A465B004117FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0922B0A465B004117FA /* SceneDelegate.swift */; };
@@ -25,17 +30,22 @@
 		1D4AD0CD2B0A765B004117FA /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0CC2B0A765B004117FA /* NavigationViewController.swift */; };
 		1D4AD0CF2B0A7708004117FA /* RegisterCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0CE2B0A7708004117FA /* RegisterCustomerViewController.swift */; };
 		1D4AD0D22B0A7A84004117FA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */; };
+		1D54B89C2B11F88D00A0AECA /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 1D54B89B2B11F88D00A0AECA /* SwiftKeychainWrapper */; };
 		1DA7C11F2B10639800C6EEB9 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA7C11E2B10639800C6EEB9 /* ForgetPasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D261CC02B0C426500B09848 /* KeyboardHide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHide.swift; sourceTree = "<group>"; };
+		1D261CC02B0C426500B09848 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		1D261CC22B0C428300B09848 /* ViewMove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMove.swift; sourceTree = "<group>"; };
 		1D261CC42B0C42D400B09848 /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		1D261CC72B0C4F4C00B09848 /* ressy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ressy.entitlements; sourceTree = "<group>"; };
 		1D261CC82B0C6E5E00B09848 /* AccountTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTypeViewController.swift; sourceTree = "<group>"; };
 		1D261CCA2B0C734F00B09848 /* RegisterProfessionalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProfessionalViewController.swift; sourceTree = "<group>"; };
-		1D261CCC2B0C7B6A00B09848 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
+		1D261CCC2B0C7B6A00B09848 /* ConfirmOTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOTPViewController.swift; sourceTree = "<group>"; };
+		1D3430872B13128D0095CDBF /* ForgetOTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetOTPViewController.swift; sourceTree = "<group>"; };
+		1D3430892B13130B0095CDBF /* CreateNewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPasswordViewController.swift; sourceTree = "<group>"; };
+		1D34308B2B134C270095CDBF /* CustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSwitch.swift; sourceTree = "<group>"; };
+		1D34308D2B1399E40095CDBF /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		1D4905922B0F520D00C0FECE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1D4AD08D2B0A465B004117FA /* ressy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ressy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D4AD0902B0A465B004117FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D54B89C2B11F88D00A0AECA /* SwiftKeychainWrapper in Frameworks */,
+				1D0684D92B10A41C00EE2C8D /* JWTDecode in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,11 +80,19 @@
 			isa = PBXGroup;
 			children = (
 				1D4AD0CC2B0A765B004117FA /* NavigationViewController.swift */,
-				1D261CC02B0C426500B09848 /* KeyboardHide.swift */,
+				1D261CC02B0C426500B09848 /* ViewControllerExtension.swift */,
 				1D261CC42B0C42D400B09848 /* PaddedTextField.swift */,
 				1D261CC22B0C428300B09848 /* ViewMove.swift */,
+				1D34308B2B134C270095CDBF /* CustomSwitch.swift */,
 			);
 			path = DesignStuff;
+			sourceTree = "<group>";
+		};
+		1D34308F2B1437370095CDBF /* MainViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MainViewControllers;
 			sourceTree = "<group>";
 		};
 		1D4AD0842B0A465B004117FA = {
@@ -98,7 +118,8 @@
 				1D4AD0902B0A465B004117FA /* AppDelegate.swift */,
 				1D4AD0922B0A465B004117FA /* SceneDelegate.swift */,
 				1D4AD0962B0A465B004117FA /* Main.storyboard */,
-				1D4AD0D02B0A7751004117FA /* ViewControllers */,
+				1D4AD0D02B0A7751004117FA /* AuthViewControllers */,
+				1D34308F2B1437370095CDBF /* MainViewControllers */,
 				1D4AD0992B0A465C004117FA /* Assets.xcassets */,
 				1D4AD09B2B0A465C004117FA /* LaunchScreen.storyboard */,
 				1D4AD09E2B0A465C004117FA /* Info.plist */,
@@ -109,19 +130,22 @@
 			path = ressy;
 			sourceTree = "<group>";
 		};
-		1D4AD0D02B0A7751004117FA /* ViewControllers */ = {
+		1D4AD0D02B0A7751004117FA /* AuthViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				1D4AD0942B0A465B004117FA /* EntryViewController.swift */,
 				1D261CC82B0C6E5E00B09848 /* AccountTypeViewController.swift */,
 				1D4AD0CE2B0A7708004117FA /* RegisterCustomerViewController.swift */,
 				1D261CCA2B0C734F00B09848 /* RegisterProfessionalViewController.swift */,
-				1D261CCC2B0C7B6A00B09848 /* OTPViewController.swift */,
+				1D261CCC2B0C7B6A00B09848 /* ConfirmOTPViewController.swift */,
 				1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */,
 				1DA7C11E2B10639800C6EEB9 /* ForgetPasswordViewController.swift */,
+				1D3430872B13128D0095CDBF /* ForgetOTPViewController.swift */,
+				1D3430892B13130B0095CDBF /* CreateNewPasswordViewController.swift */,
 				1D4905922B0F520D00C0FECE /* MainViewController.swift */,
+				1D34308D2B1399E40095CDBF /* MainTabViewController.swift */,
 			);
-			path = ViewControllers;
+			path = AuthViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +164,10 @@
 			dependencies = (
 			);
 			name = ressy;
+			packageProductDependencies = (
+				1D0684D82B10A41C00EE2C8D /* JWTDecode */,
+				1D54B89B2B11F88D00A0AECA /* SwiftKeychainWrapper */,
+			);
 			productName = ressy;
 			productReference = 1D4AD08D2B0A465B004117FA /* ressy.app */;
 			productType = "com.apple.product-type.application";
@@ -168,6 +196,10 @@
 				Base,
 			);
 			mainGroup = 1D4AD0842B0A465B004117FA;
+			packageReferences = (
+				1D0684D72B10A41C00EE2C8D /* XCRemoteSwiftPackageReference "JWTDecode" */,
+				1D54B89A2B11F88D00A0AECA /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+			);
 			productRefGroup = 1D4AD08E2B0A465B004117FA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -196,11 +228,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D34308E2B1399E40095CDBF /* MainTabViewController.swift in Sources */,
 				1D261CCB2B0C734F00B09848 /* RegisterProfessionalViewController.swift in Sources */,
+				1D3430882B13128D0095CDBF /* ForgetOTPViewController.swift in Sources */,
+				1D34308C2B134C270095CDBF /* CustomSwitch.swift in Sources */,
 				1D261CC32B0C428300B09848 /* ViewMove.swift in Sources */,
-				1D261CCD2B0C7B6A00B09848 /* OTPViewController.swift in Sources */,
+				1D261CCD2B0C7B6A00B09848 /* ConfirmOTPViewController.swift in Sources */,
 				1D261CC52B0C42D400B09848 /* PaddedTextField.swift in Sources */,
-				1D261CC12B0C426500B09848 /* KeyboardHide.swift in Sources */,
+				1D261CC12B0C426500B09848 /* ViewControllerExtension.swift in Sources */,
 				1D4AD0D22B0A7A84004117FA /* LoginViewController.swift in Sources */,
 				1D4AD0952B0A465B004117FA /* EntryViewController.swift in Sources */,
 				1DA7C11F2B10639800C6EEB9 /* ForgetPasswordViewController.swift in Sources */,
@@ -211,6 +246,7 @@
 				1D4AD0CD2B0A765B004117FA /* NavigationViewController.swift in Sources */,
 				1D261CC92B0C6E5E00B09848 /* AccountTypeViewController.swift in Sources */,
 				1D4AD0932B0A465B004117FA /* SceneDelegate.swift in Sources */,
+				1D34308A2B13130B0095CDBF /* CreateNewPasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +473,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1D0684D72B10A41C00EE2C8D /* XCRemoteSwiftPackageReference "JWTDecode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/JWTDecode.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
+			};
+		};
+		1D54B89A2B11F88D00A0AECA /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1D0684D82B10A41C00EE2C8D /* JWTDecode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D0684D72B10A41C00EE2C8D /* XCRemoteSwiftPackageReference "JWTDecode" */;
+			productName = JWTDecode;
+		};
+		1D54B89B2B11F88D00A0AECA /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D54B89A2B11F88D00A0AECA /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1D4AD0852B0A465B004117FA /* Project object */;
 }

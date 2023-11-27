@@ -1,28 +1,25 @@
 //
-//  OTPViewController.swift
+//  ForgetOTPViewController.swift
 //  ressy
 //
-//  Created by Valeh Ismayilov on 21.11.23.
+//  Created by Valeh Ismayilov on 26.11.23.
 //
 
 import UIKit
 
-class OTPViewController: UIViewController, UITextFieldDelegate {
-    
-    
+class ForgetOTPViewController: UIViewController, UITextFieldDelegate {
+
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var fourthField: UITextField!
     @IBOutlet weak var thirdField: UITextField!
     @IBOutlet weak var secondField: UITextField!
     @IBOutlet weak var firstField: UITextField!
     
-    var name:String?
     var email:String?
-    var password:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         firstField.delegate = self
         secondField.delegate = self
         thirdField.delegate = self
@@ -34,6 +31,7 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         fourthField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         self.submitButton.layer.cornerRadius = 26
+        
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -68,12 +66,10 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
-    
     @IBAction func submitAction(_ sender: Any) {
-        
         let enteredOTP = "\(firstField.text ?? "")\(secondField.text ?? "")\(thirdField.text ?? "")\(fourthField.text ?? "")"
-
-        guard let password = self.password,let email = self.email, let name = self.name, !enteredOTP.isEmpty
+        
+        guard let email = self.email, !enteredOTP.isEmpty
         else {
             print("Failde")
             return
@@ -81,29 +77,27 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         
         print(enteredOTP)
         
-        guard let encodedURL = URL(string: "http://ec2-34-241-107-14.eu-west-1.compute.amazonaws.com:8080/auth/signup?type=customer&otp=\(enteredOTP)")?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+        guard let encodedURL = URL(string: "http://ec2-34-248-7-102.eu-west-1.compute.amazonaws.com:8080/auth/forgot?email=\(email)&otp=\(enteredOTP)")?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let url = URL(string: encodedURL) else {
             return
         }
         
         let parameters: [String: Any] = [
-            "name": name,
-            "email": email,
-            "password": password
+            "email": email
         ]
-
+        
         guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters) else {
             return
         }
-
+        
         var request = URLRequest(url: url)
         
         request.httpMethod = "POST"
-
+        
         request.httpBody = jsonData
-
+        
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
+        
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 print("Error: \(error)")
@@ -128,8 +122,9 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
                 if (200...299).contains(httpResponse.statusCode) {
                     DispatchQueue.main.async {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC") as! MainViewController
-                        self.navigationController?.pushViewController(mainVC, animated: true)
+                        let createVC = storyboard.instantiateViewController(withIdentifier: "newPasswordVC") as! CreateNewPasswordViewController
+                        createVC.email = email
+                        self.navigationController?.pushViewController(createVC, animated: true)
                     }
                 } else {
                     print("Unsuccessful HTTP status code: \(httpResponse.statusCode)")
@@ -139,4 +134,5 @@ class OTPViewController: UIViewController, UITextFieldDelegate {
         print("Starting data task")
         task.resume()
     }
+    
 }
