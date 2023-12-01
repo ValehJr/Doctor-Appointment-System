@@ -9,6 +9,7 @@ import UIKit
 
 class CreateNewPasswordViewController: UIViewController {
     
+    @IBOutlet weak var createLabel: UILabel!
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var confirmPasswordHideButton: UIButton!
     @IBOutlet weak var passwordHideButton: UIButton!

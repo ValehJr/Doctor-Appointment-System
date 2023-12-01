@@ -9,18 +9,21 @@ import UIKit
 
 class RegisterCustomerViewController: UIViewController {
     
+    @IBOutlet weak var registerLabel: UILabel!
     @IBOutlet weak var confirmPasswordHideButton: UIButton!
     @IBOutlet weak var passwordHideButton: UIButton!
     @IBOutlet weak var createAccountButton: UIButton!
     @IBOutlet weak var confirmPasswordField: PaddedTextField!
     @IBOutlet weak var passwordField: PaddedTextField!
     @IBOutlet weak var emailField: PaddedTextField!
+    @IBOutlet weak var surnameField: PaddedTextField!
     @IBOutlet weak var nameField: PaddedTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.nameField.layer.cornerRadius = 15
+        self.surnameField.layer.cornerRadius = 15
         self.emailField.layer.cornerRadius = 15
         self.passwordField.layer.cornerRadius = 15
         self.confirmPasswordField.layer.cornerRadius = 15
@@ -28,6 +31,14 @@ class RegisterCustomerViewController: UIViewController {
         
         passwordHideButton.setBackgroundImage(UIImage(named: "closedEyeIcon"), for: .normal)
         confirmPasswordHideButton.setBackgroundImage(UIImage(named: "closedEyeIcon"), for: .normal)
+        
+        let textColor = UIColor(red: 154/255.0, green: 162/255.0, blue: 178/255.0, alpha: 1)
+        
+        nameField.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        surnameField.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        emailField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        confirmPasswordField.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes: [NSAttributedString.Key.foregroundColor: textColor])
         
         hideKeyboardWhenTappedAround()
     }
@@ -46,6 +57,7 @@ class RegisterCustomerViewController: UIViewController {
         guard let password = passwordField.text,
               let email = emailField.text,
               let name = nameField.text,
+              let surname = surnameField.text,
               let confirmPassword = confirmPasswordField.text else {
             return
         }
@@ -70,7 +82,8 @@ class RegisterCustomerViewController: UIViewController {
         }
         
         let parameters: [String: Any] = [
-            "name": name,
+            "firstname": name,
+            "lastname":surname,
             "email": email,
             "password": password
         ]
@@ -141,7 +154,7 @@ class RegisterCustomerViewController: UIViewController {
                 }
             }
         }
-        print("Starting login task")
+        print("Starting task")
         task.resume()
     }
     
@@ -150,6 +163,7 @@ class RegisterCustomerViewController: UIViewController {
         let otpVC = storyboard.instantiateViewController(withIdentifier: "otpConfirmVC") as! ConfirmOTPViewController
         otpVC.name = nameField.text
         otpVC.email = emailField.text
+        otpVC.surname = surnameField.text
         otpVC.password = passwordField.text
         navigationController?.pushViewController(otpVC, animated: true)
     }

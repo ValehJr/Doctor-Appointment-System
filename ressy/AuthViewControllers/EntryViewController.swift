@@ -9,11 +9,11 @@ import UIKit
 
 class EntryViewController: UIViewController {
     
-    @IBOutlet weak var troubleButton: UIButton!
     @IBOutlet weak var singInButton: UIButton!
     @IBOutlet weak var createAccountButton: UIButton!
     @IBOutlet weak var privacyLabel: UILabel!
     @IBOutlet weak var termsLabel: UILabel!
+    @IBOutlet weak var logoLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,6 +54,8 @@ class EntryViewController: UIViewController {
         self.singInButton.layer.cornerRadius = 26
         self.singInButton.layer.borderColor = UIColor.white.cgColor
         self.singInButton.layer.borderWidth = 1
+        
+        checkJWTAndNavigateToMain()
     }
     
     @IBAction func createAccountAction(_ sender: Any) {
@@ -66,10 +68,6 @@ class EntryViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
         self.navigationController?.pushViewController(loginVC, animated: true)
-    }
-    
-    @IBAction func troubleAction(_ sender: Any) {
-        
     }
     
     @objc func tappedOnLabel(_ gesture: UITapGestureRecognizer) {

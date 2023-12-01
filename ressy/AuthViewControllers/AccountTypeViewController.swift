@@ -9,6 +9,7 @@ import UIKit
 
 class AccountTypeViewController: UIViewController {
 
+    @IBOutlet weak var registerLabel: UILabel!
     @IBOutlet weak var professionalButton: UIButton!
     @IBOutlet weak var customerButton: UIButton!
     override func viewDidLoad() {

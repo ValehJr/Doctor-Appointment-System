@@ -9,6 +9,7 @@ import UIKit
 
 class RegisterProfessionalViewController: UIViewController,UIPickerViewDataSource, UIPickerViewDelegate {
     
+    @IBOutlet weak var registerLabel: UILabel!
     @IBOutlet weak var confirmPasswordHideButton: UIButton!
     @IBOutlet weak var passwordHideButton: UIButton!
     @IBOutlet weak var createAccountButton: UIButton!
@@ -16,6 +17,7 @@ class RegisterProfessionalViewController: UIViewController,UIPickerViewDataSourc
     @IBOutlet weak var confirmPasswordField: PaddedTextField!
     @IBOutlet weak var passwordField: PaddedTextField!
     @IBOutlet weak var emailField: PaddedTextField!
+    @IBOutlet weak var surnameField: PaddedTextField!
     @IBOutlet weak var nameField: PaddedTextField!
     
     let fields = ["Doctor","Barber","Other"]
@@ -38,6 +40,15 @@ class RegisterProfessionalViewController: UIViewController,UIPickerViewDataSourc
         passwordHideButton.setBackgroundImage(UIImage(named: "closedEyeIcon"), for: .normal)
         confirmPasswordHideButton.setBackgroundImage(UIImage(named: "closedEyeIcon"), for: .normal)
         
+        let textColor = UIColor(red: 154/255.0, green: 162/255.0, blue: 178/255.0, alpha: 1)
+        
+        nameField.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        surnameField.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        emailField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        confirmPasswordField.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        fieldChooseField.attributedPlaceholder = NSAttributedString(string: "Choose Field", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        
         hideKeyboardWhenTappedAround()
     }
     
@@ -55,6 +66,7 @@ class RegisterProfessionalViewController: UIViewController,UIPickerViewDataSourc
         guard let password = passwordField.text,
               let email = emailField.text,
               let name = nameField.text,
+              let surname = surnameField.text,
               let confirmPassword = confirmPasswordField.text,
               let field = fieldChooseField.text else {
             return
@@ -80,7 +92,8 @@ class RegisterProfessionalViewController: UIViewController,UIPickerViewDataSourc
         }
 
         let parameters: [String: Any] = [
-            "name": name,
+            "firstname": name,
+            "lastname":surname,
             "email": email,
             "field":field,
             "password": password
@@ -156,6 +169,7 @@ class RegisterProfessionalViewController: UIViewController,UIPickerViewDataSourc
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let otpVC = storyboard.instantiateViewController(withIdentifier: "otpConfirmVC") as! ConfirmOTPViewController
         otpVC.name = nameField.text
+        otpVC.surname = surnameField.text
         otpVC.email = emailField.text
         otpVC.password = passwordField.text
         navigationController?.pushViewController(otpVC, animated: true)

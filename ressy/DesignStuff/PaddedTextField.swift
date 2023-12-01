@@ -7,7 +7,19 @@
 
 import UIKit
 
+protocol PaddedTextFieldDelegate: AnyObject {
+    func textFieldDidDelete()
+}
+
+
 class PaddedTextField: UITextField {
+    
+    weak var myDelegate: PaddedTextFieldDelegate?
+    
+    override func deleteBackward() {
+        super.deleteBackward()
+        myDelegate?.textFieldDidDelete()
+    }
     
     let screenSize:CGRect = UIScreen.main.bounds
     

@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
+
 
 class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
     
     
+    @IBOutlet weak var descripLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var fourthField: UITextField!
     @IBOutlet weak var thirdField: UITextField!
@@ -17,6 +20,7 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstField: UITextField!
     
     var name:String?
+    var surname:String?
     var email:String?
     var password:String?
     
@@ -36,6 +40,10 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
         self.submitButton.layer.cornerRadius = 26
     }
     
+    func textFieldDidDelete() {
+        print("delete")
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newLength = (textField.text?.count ?? 0) + string.count - range.length
         return newLength <= 1
@@ -51,7 +59,7 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
             case thirdField:
                 fourthField.becomeFirstResponder()
             case fourthField:
-                textField.resignFirstResponder()
+                return
             default:
                 break
             }
@@ -73,7 +81,7 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
         
         let enteredOTP = "\(firstField.text ?? "")\(secondField.text ?? "")\(thirdField.text ?? "")\(fourthField.text ?? "")"
         
-        guard let password = self.password,let email = self.email, let name = self.name, !enteredOTP.isEmpty
+        guard let password = self.password,let email = self.email, let name = self.name,let surname = self.surname ,!enteredOTP.isEmpty
         else {
             print("Failde")
             return
@@ -87,7 +95,8 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
         }
         
         let parameters: [String: Any] = [
-            "name": name,
+            "firstname": name,
+            "lastname":surname,
             "email": email,
             "password": password
         ]
@@ -115,8 +124,16 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print("Response JSON: \(json)")
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                        print("Response JSON: \(json)")
+                        if let jwtToken = json["data"] as? String {
+                            KeychainWrapper.standard.set(jwtToken, forKey: "jwtToken")
+                        } else {
+                            print("Failed to extract JWT token from JSON")
+                        }
+                    } else {
+                        print("Failed to parse JSON")
+                    }
                 } catch {
                     print("Error parsing JSON: \(error)")
                 }
@@ -127,9 +144,9 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
                 
                 if (200...299).contains(httpResponse.statusCode) {
                     DispatchQueue.main.async {
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC") as! MainViewController
-                        self.navigationController?.pushViewController(mainVC, animated: true)
+                        let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarVC") as? UITabBarController
+                        self.view.window?.rootViewController = homeViewController
+                        self.view.window?.makeKeyAndVisible()
                     }
                 } else {
                     print("Unsuccessful HTTP status code: \(httpResponse.statusCode)")

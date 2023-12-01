@@ -9,6 +9,7 @@ import UIKit
 
 class ForgetOTPViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var descripLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var fourthField: UITextField!
     @IBOutlet weak var thirdField: UITextField!

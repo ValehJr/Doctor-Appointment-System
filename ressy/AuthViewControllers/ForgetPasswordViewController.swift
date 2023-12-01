@@ -9,6 +9,7 @@ import UIKit
 
 class ForgetPasswordViewController: UIViewController {
     
+    @IBOutlet weak var forgetLabel: UILabel!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var emailField: PaddedTextField!
     override func viewDidLoad() {

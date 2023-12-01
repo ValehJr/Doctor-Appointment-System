@@ -7,14 +7,18 @@
 
 import UIKit
 import SwiftKeychainWrapper
+import JWTDecode
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var singInButton: UIButton!
     @IBOutlet weak var hidePasswordButton: UIButton!
     @IBOutlet weak var passwordField: PaddedTextField!
     @IBOutlet weak var emailField: PaddedTextField!
+    
+    let jwtToken = KeychainWrapper.standard.string(forKey: "jwtToken")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +99,7 @@ class LoginViewController: UIViewController {
             } else if let data = data {
                 if let responseString = String(data: data, encoding: .utf8) {
                     print("Received data: \(responseString)")
+                    
                 }
                 guard !data.isEmpty else {
                     print("Error: Empty data received")
@@ -103,10 +108,14 @@ class LoginViewController: UIViewController {
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                         print("Response JSON: \(json)")
+                        if let jwtToken = json["data"] as? String {
+                            KeychainWrapper.standard.set(jwtToken, forKey: "jwtToken")
+                        } else {
+                            print("Failed to extract JWT token from JSON")
+                        }
                     } else {
                         print("Failed to parse JSON")
                     }
-                    
                 } catch {
                     print("Error parsing JSON: \(error)")
                 }
@@ -125,12 +134,6 @@ class LoginViewController: UIViewController {
         }
         print("Starting login task")
         task.resume()
-    }
-    
-    private func navigateToMainViewController() {
-        let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarVC") as? UITabBarController
-        self.view.window?.rootViewController = homeViewController
-        self.view.window?.makeKeyAndVisible()
     }
     
     @IBAction func forgotPasswordAction(_ sender: Any) {
