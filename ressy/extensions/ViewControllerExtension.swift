@@ -85,4 +85,18 @@ extension UIViewController {
         view.layer.shadowOffset = CGSize(width: 0, height: 2)
         view.layer.shadowRadius = 4
     }
+    
+    func addGradientToView(_ view: UIView, firstColor: UIColor, secondColor: UIColor) {
+        let gradientLayer = CAGradientLayer()
+        
+        gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+
+        gradientLayer.frame = view.bounds
+
+        view.clipsToBounds = true
+        
+        view.layer.insertSublayer(gradientLayer, at: 0)
+    }
 }

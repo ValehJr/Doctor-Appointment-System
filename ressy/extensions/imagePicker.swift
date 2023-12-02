@@ -48,7 +48,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
 
         let imageStr = imageData.base64EncodedString(options: [])
 
-        let apiUrl = "http://ec2-34-248-7-102.eu-west-1.compute.amazonaws.com:8080/user/photo"
+        let apiUrl = "http://ressy-user-service-708424409.eu-west-1.elb.amazonaws.com/user/photo"
 
         guard let url = URL(string: apiUrl) else {
             print("Invalid URL")

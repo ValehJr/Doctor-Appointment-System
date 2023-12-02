@@ -26,6 +26,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     
+    var gradient: CAGradientLayer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,9 +57,9 @@ class ProfileViewController: UIViewController {
         
         
         fetchUserInfo()
-       // fetchProfileImage()
         getImageFromServerAndDisplayInImageView(imageView: profileImage)
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         let tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profileIcon"), selectedImage: UIImage(named: "profileIconSelected"))
@@ -84,6 +86,7 @@ class ProfileViewController: UIViewController {
                 print("Error: \(error)")
                 return
             } else if let data = data {
+                print("DAta:\(data)")
                 if let responseString = String(data: data, encoding: .utf8) {
                     print("Received data:\(responseString)")
                 }
@@ -110,6 +113,9 @@ class ProfileViewController: UIViewController {
                     print("Error parsing JSON: \(error)")
                 }
             }
+            if let httpResponse = response as? HTTPURLResponse {
+                print("HTTP Status Code: \(httpResponse.statusCode)")
+            }
         }.resume()
     }
     
@@ -123,7 +129,7 @@ class ProfileViewController: UIViewController {
     }
     
     func createURL() -> URL? {
-        guard let encodedURL = URL(string: "http://ec2-34-248-7-102.eu-west-1.compute.amazonaws.com:8080/user")?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+        guard let encodedURL = URL(string: "http://ec2-54-155-120-5.eu-west-1.compute.amazonaws.com:8080/user")?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let url = URL(string: encodedURL) else {
             return nil
         }
@@ -131,7 +137,7 @@ class ProfileViewController: UIViewController {
     }
     
     func fetchProfileImage() {
-        let apiUrl = "http://ec2-34-248-7-102.eu-west-1.compute.amazonaws.com:8080/user/photo"
+        let apiUrl = "http://ressy-user-service-708424409.eu-west-1.elb.amazonaws.com/user/photo"
         
         guard let jwtToken = KeychainWrapper.standard.string(forKey: "jwtToken") else {
             print("JWT token not found in Keychain")

@@ -9,6 +9,7 @@ import UIKit
 
 class EntryViewController: UIViewController {
     
+    @IBOutlet var backView: UIView!
     @IBOutlet weak var singInButton: UIButton!
     @IBOutlet weak var createAccountButton: UIButton!
     @IBOutlet weak var privacyLabel: UILabel!
@@ -56,6 +57,8 @@ class EntryViewController: UIViewController {
         self.singInButton.layer.borderWidth = 1
         
         checkJWTAndNavigateToMain()
+        
+        addGradientToView(backView, firstColor:UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0) , secondColor: UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0))
     }
     
     @IBAction func createAccountAction(_ sender: Any) {

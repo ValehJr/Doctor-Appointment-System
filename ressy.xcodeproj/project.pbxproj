@@ -41,6 +41,11 @@
 		1D4AD0D22B0A7A84004117FA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */; };
 		1D54B89C2B11F88D00A0AECA /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 1D54B89B2B11F88D00A0AECA /* SwiftKeychainWrapper */; };
 		1DA7C11F2B10639800C6EEB9 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA7C11E2B10639800C6EEB9 /* ForgetPasswordViewController.swift */; };
+		1DC87CE82B19F03300AE2CDD /* GradientColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC87CE72B19F03300AE2CDD /* GradientColor.swift */; };
+		1DC87CEC2B1A1FC000AE2CDD /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC87CEB2B1A1FC000AE2CDD /* URL.swift */; };
+		1DC87CEF2B1A558100AE2CDD /* TopDoctorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC87CEE2B1A558100AE2CDD /* TopDoctorsCollectionViewCell.swift */; };
+		1DC87CF12B1A558F00AE2CDD /* UpcomingAppointmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC87CF02B1A558F00AE2CDD /* UpcomingAppointmentCollectionViewCell.swift */; };
+		1DC87CF32B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC87CF22B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +84,11 @@
 		1D4AD0CE2B0A7708004117FA /* RegisterCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCustomerViewController.swift; sourceTree = "<group>"; };
 		1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1DA7C11E2B10639800C6EEB9 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		1DC87CE72B19F03300AE2CDD /* GradientColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColor.swift; sourceTree = "<group>"; };
+		1DC87CEB2B1A1FC000AE2CDD /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		1DC87CEE2B1A558100AE2CDD /* TopDoctorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopDoctorsCollectionViewCell.swift; sourceTree = "<group>"; };
+		1DC87CF02B1A558F00AE2CDD /* UpcomingAppointmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingAppointmentCollectionViewCell.swift; sourceTree = "<group>"; };
+		1DC87CF22B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialityDoctorsCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +110,7 @@
 				1D4AD0CC2B0A765B004117FA /* NavigationViewController.swift */,
 				1D1BA1112B166963001F30F9 /* imagePicker.swift */,
 				1D261CC02B0C426500B09848 /* ViewControllerExtension.swift */,
+				1DC87CEB2B1A1FC000AE2CDD /* URL.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -162,8 +173,10 @@
 				1D4AD0902B0A465B004117FA /* AppDelegate.swift */,
 				1D4AD0922B0A465B004117FA /* SceneDelegate.swift */,
 				1D4AD0962B0A465B004117FA /* Main.storyboard */,
+				1DC87CE72B19F03300AE2CDD /* GradientColor.swift */,
 				1D4AD0D02B0A7751004117FA /* AuthViewControllers */,
 				1D34308F2B1437370095CDBF /* MainViewControllers */,
+				1DC87CED2B1A555000AE2CDD /* CollectionViewCells */,
 				1D4AD0992B0A465C004117FA /* Assets.xcassets */,
 				1D4AD09B2B0A465C004117FA /* LaunchScreen.storyboard */,
 				1D4AD09E2B0A465C004117FA /* Info.plist */,
@@ -189,6 +202,16 @@
 				1D3430892B13130B0095CDBF /* CreateNewPasswordViewController.swift */,
 			);
 			path = AuthViewControllers;
+			sourceTree = "<group>";
+		};
+		1DC87CED2B1A555000AE2CDD /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				1DC87CEE2B1A558100AE2CDD /* TopDoctorsCollectionViewCell.swift */,
+				1DC87CF22B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift */,
+				1DC87CF02B1A558F00AE2CDD /* UpcomingAppointmentCollectionViewCell.swift */,
+			);
+			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +302,7 @@
 			files = (
 				1D3430932B1437B60095CDBF /* AppointmentViewController.swift in Sources */,
 				1D34308E2B1399E40095CDBF /* MainTabViewController.swift in Sources */,
+				1DC87CF12B1A558F00AE2CDD /* UpcomingAppointmentCollectionViewCell.swift in Sources */,
 				1D261CCB2B0C734F00B09848 /* RegisterProfessionalViewController.swift in Sources */,
 				1D3430912B1437AD0095CDBF /* ProfileViewController.swift in Sources */,
 				1D3430882B13128D0095CDBF /* ForgetOTPViewController.swift in Sources */,
@@ -289,7 +313,9 @@
 				1D261CC12B0C426500B09848 /* ViewControllerExtension.swift in Sources */,
 				1D4AD0D22B0A7A84004117FA /* LoginViewController.swift in Sources */,
 				1D4AD0952B0A465B004117FA /* EntryViewController.swift in Sources */,
+				1DC87CEF2B1A558100AE2CDD /* TopDoctorsCollectionViewCell.swift in Sources */,
 				1DA7C11F2B10639800C6EEB9 /* ForgetPasswordViewController.swift in Sources */,
+				1DC87CF32B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift in Sources */,
 				1D4905932B0F520D00C0FECE /* MainViewController.swift in Sources */,
 				1D4AD0C92B0A4821004117FA /* UITapGestureRecognizer.swift in Sources */,
 				1D4AD0912B0A465B004117FA /* AppDelegate.swift in Sources */,
@@ -299,6 +325,8 @@
 				1D261CC92B0C6E5E00B09848 /* AccountTypeViewController.swift in Sources */,
 				1D4AD0932B0A465B004117FA /* SceneDelegate.swift in Sources */,
 				1D34308A2B13130B0095CDBF /* CreateNewPasswordViewController.swift in Sources */,
+				1DC87CE82B19F03300AE2CDD /* GradientColor.swift in Sources */,
+				1DC87CEC2B1A1FC000AE2CDD /* URL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

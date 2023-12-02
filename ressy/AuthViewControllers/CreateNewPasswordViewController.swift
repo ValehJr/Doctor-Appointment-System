@@ -55,7 +55,7 @@ class CreateNewPasswordViewController: UIViewController {
             return
         }
         
-        guard let encodedURL = URL(string: "http://ec2-34-248-7-102.eu-west-1.compute.amazonaws.com:8080/auth/forgot?email=\(email)&otpValid=OTP_CODE_VALID&password=\(password)")?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+        guard let encodedURL = URL(string:GlobalConstants.apiUrl + "/auth/forgot?email=\(email)&otpValid=OTP_CODE_VALID&password=\(password)")?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let url = URL(string: encodedURL) else {
             print("Failed to create URL")
             return

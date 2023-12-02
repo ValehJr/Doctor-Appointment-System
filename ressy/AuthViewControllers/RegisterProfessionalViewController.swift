@@ -25,6 +25,8 @@ class RegisterProfessionalViewController: UIViewController,UIPickerViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createAccountButton.clipsToBounds = true
+        
         self.nameField.layer.cornerRadius = 15
         self.emailField.layer.cornerRadius = 15
         self.passwordField.layer.cornerRadius = 15
@@ -50,7 +52,21 @@ class RegisterProfessionalViewController: UIViewController,UIPickerViewDataSourc
         fieldChooseField.attributedPlaceholder = NSAttributedString(string: "Choose Field", attributes: [NSAttributedString.Key.foregroundColor: textColor])
         
         hideKeyboardWhenTappedAround()
+        
+        let firstColor = UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
+        let secondColor = UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0)
+        
+        addGradientToView(createAccountButton, firstColor: firstColor, secondColor: secondColor)
+        
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let firstColor = UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
+        let secondColor = UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0)
+        
+        addGradientToView(createAccountButton, firstColor: firstColor, secondColor: secondColor)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -111,8 +127,8 @@ class RegisterProfessionalViewController: UIViewController,UIPickerViewDataSourc
     }
     
     private func createURL() -> URL? {
-        guard let encodedURL = URL(string: "http://ec2-34-248-7-102.eu-west-1.compute.amazonaws.com:8080/auth/signup?type=customer")?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let url = URL(string: encodedURL) else {
+        guard let encodedURL = URL(string: GlobalConstants.apiUrl + "/auth/signup?type=customer")?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+            let url = URL(string: encodedURL) else {
             return nil
         }
         return url

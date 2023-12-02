@@ -38,7 +38,21 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
         fourthField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         self.submitButton.layer.cornerRadius = 26
+        
+        let firstColor = UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
+        let secondColor = UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0)
+        
+        addGradientToView(submitButton, firstColor: firstColor, secondColor: secondColor)
+        
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let firstColor = UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
+        let secondColor = UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0)
+        
+        addGradientToView(submitButton, firstColor: firstColor, secondColor: secondColor)
+    }
+    
     
     func textFieldDidDelete() {
         print("delete")
@@ -89,7 +103,7 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
         
         print(enteredOTP)
         
-        guard let encodedURL = URL(string: "http://ec2-34-248-7-102.eu-west-1.compute.amazonaws.com:8080/auth/signup?type=customer&otp=\(enteredOTP)")?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+        guard let encodedURL = URL(string: GlobalConstants.apiUrl + "/auth/signup?type=customer&otp=\(enteredOTP)")?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let url = URL(string: encodedURL) else {
             return
         }

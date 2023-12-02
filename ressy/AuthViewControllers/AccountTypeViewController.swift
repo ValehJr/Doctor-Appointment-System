@@ -9,6 +9,7 @@ import UIKit
 
 class AccountTypeViewController: UIViewController {
 
+    @IBOutlet var backView: UIView!
     @IBOutlet weak var registerLabel: UILabel!
     @IBOutlet weak var professionalButton: UIButton!
     @IBOutlet weak var customerButton: UIButton!
@@ -21,6 +22,8 @@ class AccountTypeViewController: UIViewController {
         self.professionalButton.layer.cornerRadius = 26
         self.professionalButton.layer.borderColor = UIColor.white.cgColor
         self.professionalButton.layer.borderWidth = 1
+        
+        addGradientToView(backView, firstColor:UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0) , secondColor: UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0))
     }
     
     @IBAction func customerButtonAction(_ sender: Any) {
