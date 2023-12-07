@@ -89,6 +89,5 @@ class EntryViewController: UIViewController {
             print("user tapped on terms and conditions text")
         }
     }
-    @IBAction func unwindToEntryViewController(segue: UIStoryboardSegue) {
-    }
+    @IBAction func unwindToEntryViewController(segue: UIStoryboardSegue) {}
 }

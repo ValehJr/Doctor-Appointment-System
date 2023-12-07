@@ -8,5 +8,7 @@
 import UIKit
 
 class SpecialityDoctorsCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var doctorLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
 }

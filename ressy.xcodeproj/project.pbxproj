@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D0684D92B10A41C00EE2C8D /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 1D0684D82B10A41C00EE2C8D /* JWTDecode */; };
+		1D177D662B21CDC200BB7FBC /* SpecialityDoctorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D177D652B21CDC200BB7FBC /* SpecialityDoctorTableViewCell.swift */; };
 		1D1BA1122B166963001F30F9 /* imagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA1112B166963001F30F9 /* imagePicker.swift */; };
 		1D1C9DA82B14FC5B009FB162 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D1C9DA72B14FC5B009FB162 /* Poppins-Regular.ttf */; };
 		1D1C9DAA2B14FC66009FB162 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D1C9DA92B14FC66009FB162 /* Poppins-Medium.ttf */; };
@@ -41,14 +42,18 @@
 		1D4AD0D22B0A7A84004117FA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */; };
 		1D54B89C2B11F88D00A0AECA /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 1D54B89B2B11F88D00A0AECA /* SwiftKeychainWrapper */; };
 		1DA7C11F2B10639800C6EEB9 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA7C11E2B10639800C6EEB9 /* ForgetPasswordViewController.swift */; };
+		1DB35C832B208B49006E521B /* FillProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB35C822B208B49006E521B /* FillProfileViewController.swift */; };
 		1DC87CE82B19F03300AE2CDD /* GradientColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC87CE72B19F03300AE2CDD /* GradientColor.swift */; };
 		1DC87CEC2B1A1FC000AE2CDD /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC87CEB2B1A1FC000AE2CDD /* URL.swift */; };
 		1DC87CEF2B1A558100AE2CDD /* TopDoctorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC87CEE2B1A558100AE2CDD /* TopDoctorsCollectionViewCell.swift */; };
 		1DC87CF12B1A558F00AE2CDD /* UpcomingAppointmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC87CF02B1A558F00AE2CDD /* UpcomingAppointmentCollectionViewCell.swift */; };
 		1DC87CF32B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC87CF22B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift */; };
+		1DC9DE6E2B1C982C000A93C7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1DC9DE6D2B1C982C000A93C7 /* Alamofire */; };
+		1DC9DE702B1C9A6A000A93C7 /* MainViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC9DE6F2B1C9A6A000A93C7 /* MainViewControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D177D652B21CDC200BB7FBC /* SpecialityDoctorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialityDoctorTableViewCell.swift; sourceTree = "<group>"; };
 		1D1BA1112B166963001F30F9 /* imagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imagePicker.swift; sourceTree = "<group>"; };
 		1D1C9DA72B14FC5B009FB162 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		1D1C9DA92B14FC66009FB162 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
@@ -84,11 +89,13 @@
 		1D4AD0CE2B0A7708004117FA /* RegisterCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCustomerViewController.swift; sourceTree = "<group>"; };
 		1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1DA7C11E2B10639800C6EEB9 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		1DB35C822B208B49006E521B /* FillProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillProfileViewController.swift; sourceTree = "<group>"; };
 		1DC87CE72B19F03300AE2CDD /* GradientColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColor.swift; sourceTree = "<group>"; };
 		1DC87CEB2B1A1FC000AE2CDD /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		1DC87CEE2B1A558100AE2CDD /* TopDoctorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopDoctorsCollectionViewCell.swift; sourceTree = "<group>"; };
 		1DC87CF02B1A558F00AE2CDD /* UpcomingAppointmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingAppointmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		1DC87CF22B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialityDoctorsCollectionViewCell.swift; sourceTree = "<group>"; };
+		1DC9DE6F2B1C9A6A000A93C7 /* MainViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DC9DE6E2B1C982C000A93C7 /* Alamofire in Frameworks */,
 				1D54B89C2B11F88D00A0AECA /* SwiftKeychainWrapper in Frameworks */,
 				1D0684D92B10A41C00EE2C8D /* JWTDecode in Frameworks */,
 			);
@@ -110,6 +118,7 @@
 				1D4AD0CC2B0A765B004117FA /* NavigationViewController.swift */,
 				1D1BA1112B166963001F30F9 /* imagePicker.swift */,
 				1D261CC02B0C426500B09848 /* ViewControllerExtension.swift */,
+				1DC9DE6F2B1C9A6A000A93C7 /* MainViewControllerExtension.swift */,
 				1DC87CEB2B1A1FC000AE2CDD /* URL.swift */,
 			);
 			path = extensions;
@@ -132,6 +141,7 @@
 		1D261CC62B0C42E500B09848 /* DesignStuff */ = {
 			isa = PBXGroup;
 			children = (
+				1DC87CE72B19F03300AE2CDD /* GradientColor.swift */,
 				1D261CC22B0C428300B09848 /* ViewMove.swift */,
 				1D261CC42B0C42D400B09848 /* PaddedTextField.swift */,
 				1D34308B2B134C270095CDBF /* CustomSwitch.swift */,
@@ -173,10 +183,9 @@
 				1D4AD0902B0A465B004117FA /* AppDelegate.swift */,
 				1D4AD0922B0A465B004117FA /* SceneDelegate.swift */,
 				1D4AD0962B0A465B004117FA /* Main.storyboard */,
-				1DC87CE72B19F03300AE2CDD /* GradientColor.swift */,
 				1D4AD0D02B0A7751004117FA /* AuthViewControllers */,
 				1D34308F2B1437370095CDBF /* MainViewControllers */,
-				1DC87CED2B1A555000AE2CDD /* CollectionViewCells */,
+				1DC87CED2B1A555000AE2CDD /* Cells */,
 				1D4AD0992B0A465C004117FA /* Assets.xcassets */,
 				1D4AD09B2B0A465C004117FA /* LaunchScreen.storyboard */,
 				1D4AD09E2B0A465C004117FA /* Info.plist */,
@@ -196,6 +205,7 @@
 				1D4AD0CE2B0A7708004117FA /* RegisterCustomerViewController.swift */,
 				1D261CCA2B0C734F00B09848 /* RegisterProfessionalViewController.swift */,
 				1D261CCC2B0C7B6A00B09848 /* ConfirmOTPViewController.swift */,
+				1DB35C822B208B49006E521B /* FillProfileViewController.swift */,
 				1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */,
 				1DA7C11E2B10639800C6EEB9 /* ForgetPasswordViewController.swift */,
 				1D3430872B13128D0095CDBF /* ForgetOTPViewController.swift */,
@@ -204,14 +214,15 @@
 			path = AuthViewControllers;
 			sourceTree = "<group>";
 		};
-		1DC87CED2B1A555000AE2CDD /* CollectionViewCells */ = {
+		1DC87CED2B1A555000AE2CDD /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				1DC87CEE2B1A558100AE2CDD /* TopDoctorsCollectionViewCell.swift */,
+				1D177D652B21CDC200BB7FBC /* SpecialityDoctorTableViewCell.swift */,
 				1DC87CF22B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift */,
 				1DC87CF02B1A558F00AE2CDD /* UpcomingAppointmentCollectionViewCell.swift */,
 			);
-			path = CollectionViewCells;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +244,7 @@
 			packageProductDependencies = (
 				1D0684D82B10A41C00EE2C8D /* JWTDecode */,
 				1D54B89B2B11F88D00A0AECA /* SwiftKeychainWrapper */,
+				1DC9DE6D2B1C982C000A93C7 /* Alamofire */,
 			);
 			productName = ressy;
 			productReference = 1D4AD08D2B0A465B004117FA /* ressy.app */;
@@ -265,6 +277,7 @@
 			packageReferences = (
 				1D0684D72B10A41C00EE2C8D /* XCRemoteSwiftPackageReference "JWTDecode" */,
 				1D54B89A2B11F88D00A0AECA /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				1DC9DE6C2B1C982C000A93C7 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 1D4AD08E2B0A465B004117FA /* Products */;
 			projectDirPath = "";
@@ -310,11 +323,13 @@
 				1D261CC32B0C428300B09848 /* ViewMove.swift in Sources */,
 				1D261CCD2B0C7B6A00B09848 /* ConfirmOTPViewController.swift in Sources */,
 				1D261CC52B0C42D400B09848 /* PaddedTextField.swift in Sources */,
+				1DB35C832B208B49006E521B /* FillProfileViewController.swift in Sources */,
 				1D261CC12B0C426500B09848 /* ViewControllerExtension.swift in Sources */,
 				1D4AD0D22B0A7A84004117FA /* LoginViewController.swift in Sources */,
 				1D4AD0952B0A465B004117FA /* EntryViewController.swift in Sources */,
 				1DC87CEF2B1A558100AE2CDD /* TopDoctorsCollectionViewCell.swift in Sources */,
 				1DA7C11F2B10639800C6EEB9 /* ForgetPasswordViewController.swift in Sources */,
+				1DC9DE702B1C9A6A000A93C7 /* MainViewControllerExtension.swift in Sources */,
 				1DC87CF32B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift in Sources */,
 				1D4905932B0F520D00C0FECE /* MainViewController.swift in Sources */,
 				1D4AD0C92B0A4821004117FA /* UITapGestureRecognizer.swift in Sources */,
@@ -325,6 +340,7 @@
 				1D261CC92B0C6E5E00B09848 /* AccountTypeViewController.swift in Sources */,
 				1D4AD0932B0A465B004117FA /* SceneDelegate.swift in Sources */,
 				1D34308A2B13130B0095CDBF /* CreateNewPasswordViewController.swift in Sources */,
+				1D177D662B21CDC200BB7FBC /* SpecialityDoctorTableViewCell.swift in Sources */,
 				1DC87CE82B19F03300AE2CDD /* GradientColor.swift in Sources */,
 				1DC87CEC2B1A1FC000AE2CDD /* URL.swift in Sources */,
 			);
@@ -571,6 +587,14 @@
 				minimumVersion = 4.0.1;
 			};
 		};
+		1DC9DE6C2B1C982C000A93C7 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -583,6 +607,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1D54B89A2B11F88D00A0AECA /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
+		};
+		1DC9DE6D2B1C982C000A93C7 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1DC9DE6C2B1C982C000A93C7 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

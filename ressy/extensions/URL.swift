@@ -8,5 +8,5 @@
 import Foundation
 
 struct GlobalConstants {
-    static let apiUrl = "http://ec2-54-155-120-5.eu-west-1.compute.amazonaws.com:8080"
+    static let apiUrl = "http://ressy-user-service-708424409.eu-west-1.elb.amazonaws.com"
 }

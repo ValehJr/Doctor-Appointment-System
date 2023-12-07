@@ -29,6 +29,8 @@ class CreateNewPasswordViewController: UIViewController {
         passwordHideButton.setBackgroundImage(UIImage(named: "closedEyeIcon"), for: .normal)
         confirmPasswordHideButton.setBackgroundImage(UIImage(named: "closedEyeIcon"), for: .normal)
         
+        submitButton.alpha = 0.75
+        
         hideKeyboardWhenTappedAround()
     }
     

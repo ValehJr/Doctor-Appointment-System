@@ -43,11 +43,13 @@ class RegisterCustomerViewController: UIViewController {
         confirmPasswordField.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes: [NSAttributedString.Key.foregroundColor: textColor])
         
         hideKeyboardWhenTappedAround()
+        
+        createAccountButton.alpha = 0.75
+        
         let firstColor = UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
         let secondColor = UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0)
         
         addGradientToView(createAccountButton, firstColor: firstColor, secondColor: secondColor)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {

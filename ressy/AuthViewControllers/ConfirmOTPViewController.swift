@@ -39,6 +39,8 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
         
         self.submitButton.layer.cornerRadius = 26
         
+        submitButton.alpha = 0.75
+        
         let firstColor = UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
         let secondColor = UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0)
         
@@ -158,9 +160,7 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
                 
                 if (200...299).contains(httpResponse.statusCode) {
                     DispatchQueue.main.async {
-                        let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarVC") as? UITabBarController
-                        self.view.window?.rootViewController = homeViewController
-                        self.view.window?.makeKeyAndVisible()
+                        self.navigateToFillViewController()
                     }
                 } else {
                     print("Unsuccessful HTTP status code: \(httpResponse.statusCode)")

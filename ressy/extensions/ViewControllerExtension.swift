@@ -12,12 +12,6 @@ import JWTDecode
 
 extension UIViewController {
     
-    struct UserInfo: Codable {
-        let firstname: String
-        let lastname: String
-        let joinedSince: String
-    }
-    
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -53,9 +47,19 @@ extension UIViewController {
     }
     
     func navigateToMainViewController() {
-        let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarVC") as? UITabBarController
-        self.view.window?.rootViewController = homeViewController
-        self.view.window?.makeKeyAndVisible()
+        DispatchQueue.main.async {
+            let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarVC") as? UITabBarController
+            self.view.window?.rootViewController = homeViewController
+            self.view.window?.makeKeyAndVisible()
+        }
+    }
+    
+    func navigateToFillViewController() {
+        DispatchQueue.main.async {
+            let fillViewController = self.storyboard?.instantiateViewController(withIdentifier: "fillProfileVC") as? FillProfileViewController
+            self.view.window?.rootViewController = fillViewController
+            self.view.window?.makeKeyAndVisible()
+        }
     }
     
     func checkJWTAndNavigateToMain() {
@@ -92,9 +96,9 @@ extension UIViewController {
         gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-
+        
         gradientLayer.frame = view.bounds
-
+        
         view.clipsToBounds = true
         
         view.layer.insertSublayer(gradientLayer, at: 0)
