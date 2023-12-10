@@ -19,6 +19,8 @@ class RegisterCustomerViewController: UIViewController {
     @IBOutlet weak var surnameField: PaddedTextField!
     @IBOutlet weak var nameField: PaddedTextField!
     
+    let registerModel = RegisterCustomerModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,108 +72,24 @@ class RegisterCustomerViewController: UIViewController {
     }
     
     @IBAction func createAccountAction(_ sender: Any) {
-        guard let password = passwordField.text,
-              let email = emailField.text,
-              let name = nameField.text,
-              let surname = surnameField.text,
-              let confirmPassword = confirmPasswordField.text else {
+        let user = Customer(firstName: nameField.text!, lastName: surnameField.text!, email: emailField.text!, password: passwordField.text!)
+        
+        let validationResult = registerModel.validateUserInput(user: user, confirmPassword: confirmPasswordField.text)
+        
+        if let error = validationResult {
+            showAlert(message: error)
             return
         }
         
-        if !isValidEmail(email: email) {
-            showAlert(message: "Please enter a valid email address.")
-            return
-        }
-        
-        if password.count < 8 {
-            showAlert(message: "Password must be at least 8 characters.")
-            return
-        }
-        
-        if password != confirmPassword {
-            showAlert(message: "Password and Confirm password must be equal.")
-            return
-        }
-        
-        guard let url = createURL() else {
-            return
-        }
-        
-        let parameters: [String: Any] = [
-            "firstname": name,
-            "lastname":surname,
-            "email": email,
-            "password": password
-        ]
-        
-        guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters) else {
-            return
-        }
-        
-        let request = createURLRequest(url: url, jsonData: jsonData)
-        
-        if password == confirmPassword {
-            performURLRequest(request)
-        }
-    }
-    
-    private func createURL() -> URL? {
-        guard let encodedURL = URL(string: GlobalConstants.apiUrl + "/auth/signup?type=customer")?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let url = URL(string: encodedURL) else {
-            return nil
-        }
-        return url
-    }
-    
-    private func createURLRequest(url: URL, jsonData: Data) -> URLRequest {
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = jsonData
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        return request
-    }
-    
-    private func performURLRequest(_ request: URLRequest) {
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                print("Error: \(error)")
-            } else if let data = data {
-                // Print the response data as a string
-                if let responseString = String(data: data, encoding: .utf8) {
-                    print("Received data: \(responseString)")
+        registerModel.registerUser(user: user) { success in
+            if success {
+                DispatchQueue.main.async {
+                    self.navigateToOTPViewController()
                 }
-                
-                guard !data.isEmpty else {
-                    print("Error: Empty data received")
-                    return
-                }
-                
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        print("Response JSON: \(json)")
-                    } else {
-                        print("Failed to parse JSON")
-                    }
-                    
-                } catch {
-                    print("Error parsing JSON: \(error)")
-                }
-            }
-            
-            if let httpResponse = response as? HTTPURLResponse {
-                print("HTTP status code: \(httpResponse.statusCode)")
-                
-                if (200...299).contains(httpResponse.statusCode) {
-                    DispatchQueue.main.async {
-                        self.navigateToOTPViewController()
-                    }
-                } else {
-                    print("Unsuccessful HTTP status code: \(httpResponse.statusCode)")
-                }
+            } else {
+                self.showAlert(message: "Unable to create!")
             }
         }
-        print("Starting login task")
-        task.resume()
     }
     
     private func navigateToOTPViewController() {
@@ -181,6 +99,7 @@ class RegisterCustomerViewController: UIViewController {
         otpVC.email = emailField.text
         otpVC.surname = surnameField.text
         otpVC.password = passwordField.text
+        otpVC.registrationType = .customer
         navigationController?.pushViewController(otpVC, animated: true)
     }
     

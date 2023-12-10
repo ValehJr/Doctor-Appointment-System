@@ -45,7 +45,10 @@ class ProfileViewController: UIViewController{
         notificationView.layer.borderWidth = 1
         notificationView.layer.cornerRadius = 10
         
-        profileImage.layer.cornerRadius = 24
+        profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
+        profileImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        profileImage.layer.masksToBounds = true
+        profileImage.contentMode = .scaleAspectFill
         
         addShadow(to: settingsView)
         addShadow(to: othersView)

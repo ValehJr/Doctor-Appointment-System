@@ -33,10 +33,15 @@ class FillProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
         
         genderField.inputView = pickerView
         
+        datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
         dateField.inputView = datePicker
+        datePicker.maximumDate = Date()
+        
         
         datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        
+        profileImage.image = UIImage(named: "addImageIcon")
         
         hideKeyboardWhenTappedAround()
     }
@@ -49,7 +54,14 @@ class FillProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
     }
     
     @IBAction func sendAction(_ sender: Any) {
-        guard let gender = genderField.text, let date = dateField.text else {
+        guard let gender = genderField.text, let date = dateField.text, !gender.isEmpty, !date.isEmpty else {
+            showAlert(message: "All the fields must be filled in!")
+            return
+        }
+        
+        let placeholderImage = UIImage(named: "addImageIcon")
+        guard let image = profileImage.image, image != placeholderImage else {
+            showAlert(message: "Select the image!")
             return
         }
         
@@ -110,8 +122,6 @@ class FillProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
         }
         
     }
-    
-    
     
     @objc func datePickerValueChanged() {
         let dateFormatter = DateFormatter()

@@ -122,7 +122,6 @@ class LoginViewController: UIViewController {
                 }
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        print("Response JSON: \(json)")
                         if let jwtToken = json["data"] as? String {
                             KeychainWrapper.standard.set(jwtToken, forKey: "jwtToken")
                         } else {

@@ -9,8 +9,10 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var doctorSpecialityTableView: UITableView!
+
     @IBOutlet weak var topDoctorsCollectionView: UICollectionView!
-    @IBOutlet weak var doctorSpecialityCollectionView: UICollectionView!
     @IBOutlet weak var upcomingAppointmentCollectionView: UICollectionView!
     @IBOutlet weak var searchField: PaddedTextField!
     @IBOutlet weak var profileImage: UIImageView!
@@ -24,11 +26,13 @@ class MainViewController: UIViewController {
         upcomingAppointmentCollectionView.dataSource = self
         upcomingAppointmentCollectionView.delegate = self
         
-        doctorSpecialityCollectionView.dataSource = self
-        doctorSpecialityCollectionView.delegate = self
-        
+        upcomingAppointmentCollectionView.layer.cornerRadius = 15
+
         topDoctorsCollectionView.dataSource = self
         topDoctorsCollectionView.delegate = self
+        
+//        doctorSpecialityTableView.delegate = self
+//        doctorSpecialityTableView.dataSource = self
         
         profileImage.layer.cornerRadius = 24
         
@@ -64,21 +68,35 @@ class MainViewController: UIViewController {
     
 }
 
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == upcomingAppointmentCollectionView {
+            return CGSize(width: upcomingAppointmentCollectionView.bounds.width, height: collectionView.bounds.height)
+        } else if collectionView == topDoctorsCollectionView {
+            return CGSize(width: topDoctorsCollectionView.bounds.width, height: 100)
+        }
+        return CGSize.zero
+    }
+}
+
+
+
+
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == upcomingAppointmentCollectionView {
             return 1
         }
-        if collectionView == doctorSpecialityCollectionView {
-            return imageNames.count
+        
+        if collectionView == topDoctorsCollectionView {
+            return 5
         }
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == upcomingAppointmentCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "upcomingAppointment", for: indexPath) as! UpcomingAppointmentCollectionViewCell
-            cell.backgorundView.layer.cornerRadius = 15
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "upcomingAppointmentID", for: indexPath) as! UpcomingAppointmentCollectionViewCell
             let firstColor = UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
             let secondColor = UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0)
             addGradientToView(cell.backgorundView, firstColor: firstColor, secondColor: secondColor)
@@ -86,22 +104,15 @@ extension MainViewController: UICollectionViewDataSource {
             cell.timeView.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.09)
             cell.calendarView.layer.cornerRadius = 15
             cell.timeView.layer.cornerRadius = 15
+            cell.backgorundView.frame = cell.bounds
             return cell
         }
-        if collectionView == doctorSpecialityCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "doctorSpecialityID", for: indexPath) as! SpecialityDoctorsCollectionViewCell
-            let imageName = imageNames[indexPath.item]
-            cell.imageView.image = UIImage(named: imageName)
+        if collectionView == topDoctorsCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "topDoctorsID", for: indexPath) as! TopDoctorsCollectionViewCell
+            cell.nameLabel.text = "Valeh"
             return cell
         }
         
         return UICollectionViewCell()
-    }
-}
-
-extension MainViewController: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
     }
 }

@@ -23,6 +23,14 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
     var surname:String?
     var email:String?
     var password:String?
+    var profession:String?
+    
+    enum RegistrationType {
+        case customer
+        case doctor
+    }
+    
+    var registrationType: RegistrationType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +54,7 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
         
         addGradientToView(submitButton, firstColor: firstColor, secondColor: secondColor)
         
+        configureUIForRegistrationType()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,6 +62,17 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
         let secondColor = UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0)
         
         addGradientToView(submitButton, firstColor: firstColor, secondColor: secondColor)
+    }
+    
+    private func configureUIForRegistrationType() {
+        switch registrationType {
+        case .customer:
+            descripLabel.text = "Enter the OTP code sent to your email to complete the registration as a customer."
+        case .doctor:
+            descripLabel.text = "Enter the OTP code sent to your email to complete the registration as a professional."
+        case .none:
+            break
+        }
     }
     
     
@@ -103,19 +123,37 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
+        guard let registrationType = registrationType else {
+            print("Registration type is nil")
+            return
+        }
+        
         print(enteredOTP)
         
-        guard let encodedURL = URL(string: GlobalConstants.apiUrl + "/auth/signup?type=customer&otp=\(enteredOTP)")?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+        guard let encodedURL = URL(string: GlobalConstants.apiUrl + "/auth/signup?type=\(registrationType)&otp=\(enteredOTP)")?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let url = URL(string: encodedURL) else {
             return
         }
         
-        let parameters: [String: Any] = [
+        var parameters: [String: Any] = [
             "firstname": name,
             "lastname":surname,
             "email": email,
             "password": password
         ]
+        
+        switch registrationType {
+        case .customer:
+            print("Customer")
+            break
+        case .doctor:
+            guard let profession = profession else {
+                print("Profession is nil for professional registration")
+                return
+            }
+            print("Proffesional")
+            parameters["profession"] = profession
+        }
         
         guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters) else {
             return

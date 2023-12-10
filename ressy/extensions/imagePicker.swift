@@ -128,7 +128,6 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
             }
             
             if let data = data{
-                print("Data:\(data)")
                 if let json = try? JSONSerialization.jsonObject(with: data, options: []),
                    let jsonDict = json as? [String: Any],
                    let imageDataString = jsonDict["data"] as? String,
@@ -149,7 +148,6 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
             }
             
             if let contentType = httpResponse.allHeaderFields["Content-Type"] as? String {
-                print("Content-Type: \(contentType)")
             }
         }
         task.resume()
