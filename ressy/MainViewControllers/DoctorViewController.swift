@@ -21,11 +21,58 @@ class DoctorViewController: UIViewController {
     @IBOutlet weak var backView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        backView.layer.cornerRadius = 15
+        
+        bookButton.layer.cornerRadius = 26
+        
+        self.title = "Name"
+        let titleFont = UIFont(name: "Poppins-SemiBold", size: 18)
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: titleFont!,
+            NSAttributedString.Key.foregroundColor: UIColor.black
+        ]
+        
+        changeNavBar(navigationBar:  self.navigationController!.navigationBar, to: .white,titleColor: .black)
+        customizeBackButton()
 
         // Do any additional setup after loading the view.
     }
-    @IBAction func bookAppointmentAction(_ sender: Any) {
+    
+    func changeNavBar(navigationBar: UINavigationBar, to color: UIColor, titleColor: UIColor) {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = color
+        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: titleColor]
+        
+        navigationBar.standardAppearance = appearance
+        navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
     }
+    
+    func customizeBackButton() {
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        
+        let backButtonImage = UIImage(named: "backIcon")?.withRenderingMode(.alwaysOriginal)
+        backButton.image = backButtonImage
+        
+        backButton.target = self
+        backButton.action = #selector(backButtonPressed)
+        
+        self.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc func backButtonPressed() {
+        // Navigate back to the previous view controller
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func bookAppointmentAction(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let doctorVC = storyboard.instantiateViewController(withIdentifier: "appointmentVC") as! AppointmentViewController
+        navigationController?.pushViewController(doctorVC, animated: true)
+    }
+    
     
 
 }

@@ -147,7 +147,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
                 completion(nil)
             }
             
-            if let contentType = httpResponse.allHeaderFields["Content-Type"] as? String {
+            if let _ = httpResponse.allHeaderFields["Content-Type"] as? String {
             }
         }
         task.resume()

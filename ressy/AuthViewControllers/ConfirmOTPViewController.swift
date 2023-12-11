@@ -53,8 +53,6 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
         let secondColor = UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0)
         
         addGradientToView(submitButton, firstColor: firstColor, secondColor: secondColor)
-        
-        configureUIForRegistrationType()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,17 +60,6 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
         let secondColor = UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0)
         
         addGradientToView(submitButton, firstColor: firstColor, secondColor: secondColor)
-    }
-    
-    private func configureUIForRegistrationType() {
-        switch registrationType {
-        case .customer:
-            descripLabel.text = "Enter the OTP code sent to your email to complete the registration as a customer."
-        case .doctor:
-            descripLabel.text = "Enter the OTP code sent to your email to complete the registration as a professional."
-        case .none:
-            break
-        }
     }
     
     

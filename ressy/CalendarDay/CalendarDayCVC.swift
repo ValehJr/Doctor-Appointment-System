@@ -17,14 +17,17 @@ class CalendarDayCVC: UICollectionViewCell {
     // MARK: - Functions
     
     func setup(_ calendarDate: CalendarDate, selected: Bool) {
-        let blueColor = UIColor(named: "BlueColor") ?? UIColor.blue
-        let lightBlueColor = UIColor(named: "LightBlueColor") ?? UIColor.systemBlue
         let today = calendarDate.date.isEqual(Date.now)
         let available = calendarDate.available && calendarDate.calendarMonth == .Current
-        backgroundUIView.backgroundColor = selected ? today ? blueColor : lightBlueColor : UIColor.clear
+        backgroundUIView.layer.cornerRadius = backgroundUIView.frame.size.width / 2
+        backgroundUIView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        backgroundUIView.layer.masksToBounds = true
+        let firstColor = UIColor(red: 160/255.0, green: 187/255.0, blue: 249/255.0, alpha: 1.0)
+        backgroundUIView.backgroundColor = selected ? today ? firstColor : firstColor : UIColor.clear
         dayNumberLabel.text = String(calendarDate.date.day())
-        let textColor = selected ? today ? UIColor.white : blueColor : today ? blueColor : available ? UIColor.black : UIColor.lightGray
+        let textColor = selected ? today ? UIColor.white : UIColor.white : today ? UIColor.black : available ? UIColor.black : UIColor.lightGray
         dayNumberLabel.textColor = textColor
-        dayNumberLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        dayNumberLabel.font = selected ? UIFont(name: "Poppins-SemiBold", size: 12) : today ? UIFont(name: "Poppins-SemiBold", size: 12) : UIFont(name: "Poppins-Regular", size: 12)
     }
+
 }

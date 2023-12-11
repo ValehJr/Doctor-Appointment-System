@@ -10,15 +10,15 @@ import UIKit
 class MainViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var doctorSpecialityTableView: UITableView!
-
+    
+    @IBOutlet weak var doctorSpecialityCollectionView: UICollectionView!
     @IBOutlet weak var topDoctorsCollectionView: UICollectionView!
     @IBOutlet weak var upcomingAppointmentCollectionView: UICollectionView!
     @IBOutlet weak var searchField: PaddedTextField!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
-    let imageNames = ["pediatric","otology","intestine","herbal","general","dentist","cardiology","more"]
+    let imageNames = ["General","Dentist","Otology","Cardiology","Intestine","Pediatric","Herbal","More"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +27,13 @@ class MainViewController: UIViewController {
         upcomingAppointmentCollectionView.delegate = self
         
         upcomingAppointmentCollectionView.layer.cornerRadius = 15
-
+        
         topDoctorsCollectionView.dataSource = self
         topDoctorsCollectionView.delegate = self
+        topDoctorsCollectionView.backgroundColor = .white
         
-//        doctorSpecialityTableView.delegate = self
-//        doctorSpecialityTableView.dataSource = self
+        doctorSpecialityCollectionView.dataSource = self
+        doctorSpecialityCollectionView.delegate = self
         
         profileImage.layer.cornerRadius = 24
         
@@ -61,9 +62,31 @@ class MainViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Hide the navigation bar
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Show the navigation bar when leaving the view controller
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         let tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "homeIcon"), selectedImage: UIImage(named: "homeIconSelected"))
         self.tabBarItem = tabBarItem
+    }
+    @IBAction func seeAllSpecialitiesAction(_ sender: Any) {
+        print("Click")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let doctorVC = storyboard.instantiateViewController(withIdentifier: "doctorVC") as! DoctorViewController
+        
+        // Push the DoctorViewController onto the navigation stack
+        navigationController?.pushViewController(doctorVC, animated: true)
     }
     
 }
@@ -74,6 +97,8 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: upcomingAppointmentCollectionView.bounds.width, height: collectionView.bounds.height)
         } else if collectionView == topDoctorsCollectionView {
             return CGSize(width: topDoctorsCollectionView.bounds.width, height: 100)
+        } else if collectionView == doctorSpecialityCollectionView {
+            return CGSize(width: doctorSpecialityCollectionView.bounds.width, height: 82)
         }
         return CGSize.zero
     }
@@ -90,6 +115,9 @@ extension MainViewController: UICollectionViewDataSource {
         
         if collectionView == topDoctorsCollectionView {
             return 5
+        }
+        if collectionView == doctorSpecialityCollectionView {
+            return imageNames.count
         }
         return 0
     }
@@ -109,8 +137,20 @@ extension MainViewController: UICollectionViewDataSource {
         }
         if collectionView == topDoctorsCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "topDoctorsID", for: indexPath) as! TopDoctorsCollectionViewCell
+            cell.backgroundColor = UIColor.white
             cell.nameLabel.text = "Valeh"
             return cell
+        }
+        if collectionView == doctorSpecialityCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "specialityID", for: indexPath) as! SpecialityDoctorsCollectionViewCell
+            let images = imageNames[indexPath.item]
+            cell.imageView.image = UIImage(named: images)
+            cell.doctorLabel.text = images
+            if let widthConstraint = cell.imageView.constraints.first(where: { $0.identifier == "0x60000213ecb0" }) {
+                widthConstraint.isActive = false
+            }
+            return cell
+            
         }
         
         return UICollectionViewCell()

@@ -43,8 +43,6 @@ class DateService {
     
     private func setYearsForPicker() {
         yearsForPicker.removeAll()
-        print(minDate.toString())
-        print(maxDate.toString())
         for year in minDate.year()...maxDate.year() {
             yearsForPicker.append(String(year))
         }
@@ -61,9 +59,7 @@ class DateService {
     }
     
     func setMaxDate(_ date: Date) {
-        print(maxDate.toString("dd.MM.yyyy hh:mm"))
         maxDate = date
-        print(maxDate.toString("dd.MM.yyyy hh:mm"))
         updatePickerValues()
     }
     

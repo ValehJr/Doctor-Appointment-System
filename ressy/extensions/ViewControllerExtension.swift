@@ -103,4 +103,11 @@ extension UIViewController {
         
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
+    
+    func changeBackButton() {
+        let backButtonBlack = UIImage(named: "backIcon")?.withRenderingMode(.alwaysOriginal)
+        UINavigationBar.appearance().backIndicatorImage = backButtonBlack
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonBlack
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for: .default)
+    }
 }
