@@ -30,6 +30,7 @@ class AppointmentViewController: UIViewController {
     var selectDateMode: Bool = false
     var selectedDate: Date?
     var selectedIndexPath: IndexPath?
+    var selectedHour:String?
     
     let screenSize: CGRect = UIScreen.main.bounds
     
@@ -38,7 +39,9 @@ class AppointmentViewController: UIViewController {
     
     
     let firstColor = UIColor(red: 235/255, green: 240/255, blue: 254/255, alpha: 1)
-    
+    let firstGradColor = UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
+    let secondGradColor = UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0)
+    let textColor = UIColor(red: 163/255.0, green: 194/255.0, blue: 249/255.0, alpha: 1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -162,21 +165,20 @@ class AppointmentViewController: UIViewController {
         dateService.goLastMonth()
         reloadValues()
     }
-    
-    @objc func button_Select(_ sender: UIButton) {
-        let firstGradColor = UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
-        let secondGradColor = UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0)
-        if sender.isSelected {
-            // The button is already selected, set normal state colors
-            sender.backgroundColor = UIColor.white
-            sender.setTitleColor(UIColor.white, for: .normal)
-            sender.isSelected = false
-        } else {
-            // The button is not selected, set gradient background
-            addGradientToView(sender, firstColor: firstGradColor, secondColor: secondGradColor)
-            sender.setTitleColor(UIColor.white, for: .normal)
-            sender.isSelected = true
+    func deselectCell(_ cell: SelectHourCollectionViewCell) {
+        selectedHour = nil
+        
+        if let gradientLayer = cell.backView.layer.sublayers?.first as? CAGradientLayer {
+            gradientLayer.removeFromSuperlayer()
         }
+        cell.backView.backgroundColor = .white
+        cell.timeLabel.textColor = textColor
+        cell.isSelected = false
+    }
+    func selectCell(_ cell: SelectHourCollectionViewCell) {
+        addGradientToView(cell.backView, firstColor: firstGradColor, secondColor: secondGradColor)
+        cell.timeLabel.textColor = .white
+        cell.isSelected = true
     }
 }
 extension AppointmentViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -205,25 +207,14 @@ extension AppointmentViewController: UICollectionViewDelegate, UICollectionViewD
             cell.setup(calendarDate, selected: calendarDate.date.isEqual(selectedDate))
             return cell
         } else if collectionView == timeSelectionCollectionView {
-            let firstGradColor = UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
-            let secondGradColor = UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0)
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectHourID", for: indexPath) as! SelectHourCollectionViewCell
             cell.backgroundColor = UIColor.white
-            cell.timeButton.isUserInteractionEnabled = true
             let selectedHour = hours[indexPath.item]
-            cell.timeButton.setTitle(selectedHour, for: .normal)
-            print("Selected:\(selectedHour)")
-            print("Selected:\(selectedHourValue)")
+            cell.timeLabel.text = selectedHour
             cell.backView.layer.cornerRadius = 20
             cell.layer.cornerRadius = 20
             let gradColor = [firstGradColor,secondGradColor]
             cell.backView.setGradientBorder(width: 1, colors:gradColor)
-            if selectedHour == selectedHourValue {
-                cell.backView.backgroundColor = UIColor.yellow  // Replace with the desired color
-            } else {
-                // Reset the background color when not selected
-                cell.backView.backgroundColor = UIColor.clear
-            }
             return cell
         }
         return UICollectionViewCell()
@@ -233,11 +224,41 @@ extension AppointmentViewController: UICollectionViewDelegate, UICollectionViewD
         if collectionView == calendarCollectionView {
             guard let selectedDate = dateService.daySelected(indexPath) else { return }
             self.selectedDate = selectedDate
+            reloadValues()
         } else if collectionView == timeSelectionCollectionView {
-            selectedHourValue = hours[indexPath.item]
-            print("Selected Hour: \(selectedHourValue)")
+            for selectedItemIndexPath in timeSelectionCollectionView.indexPathsForSelectedItems ?? [] {
+                if selectedItemIndexPath != indexPath {
+                    if let cell = collectionView.cellForItem(at: selectedItemIndexPath) as? SelectHourCollectionViewCell {
+                        deselectCell(cell)
+                    }
+                }
+            }
+            if let cell = collectionView.cellForItem(at: indexPath) as? SelectHourCollectionViewCell {
+                selectedHour = hours[indexPath.item]
+                selectCell(cell)
+            }
         }
-        collectionView.reloadData()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if collectionView == timeSelectionCollectionView {
+            if let cell = collectionView.cellForItem(at: indexPath) as? SelectHourCollectionViewCell {
+                deselectCell(cell)
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        if collectionView == timeSelectionCollectionView {
+            if collectionView.cellForItem(at: indexPath)?.isSelected ?? false {
+                collectionView.deselectItem(at: indexPath, animated: true)
+                if let cell = collectionView.cellForItem(at: indexPath) as? SelectHourCollectionViewCell {
+                    deselectCell(cell)
+                }
+                return false
+            }
+        }
+        return true
     }
 }
 

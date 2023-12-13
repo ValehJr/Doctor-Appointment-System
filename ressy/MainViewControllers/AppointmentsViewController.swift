@@ -9,6 +9,8 @@ import UIKit
 
 class AppointmentsViewController: UIViewController {
 
+    @IBOutlet weak var appointmentCollectionView: UICollectionView!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
 

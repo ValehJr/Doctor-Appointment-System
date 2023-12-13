@@ -30,6 +30,7 @@ class RegisterProfessionalViewController: UIViewController,UIPickerViewDataSourc
         createAccountButton.clipsToBounds = true
         
         self.nameField.layer.cornerRadius = 15
+        self.surnameField.layer.cornerRadius = 15
         self.emailField.layer.cornerRadius = 15
         self.passwordField.layer.cornerRadius = 15
         self.confirmPasswordField.layer.cornerRadius = 15

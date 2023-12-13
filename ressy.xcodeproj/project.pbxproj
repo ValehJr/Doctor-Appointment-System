@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1D0684D92B10A41C00EE2C8D /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 1D0684D82B10A41C00EE2C8D /* JWTDecode */; };
-		1D177D662B21CDC200BB7FBC /* SpecialityDoctorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D177D652B21CDC200BB7FBC /* SpecialityDoctorTableViewCell.swift */; };
 		1D1A27EB2B257FDE000ACCE5 /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1A27EA2B257FDE000ACCE5 /* CustomDatePicker.swift */; };
 		1D1BA1122B166963001F30F9 /* imagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA1112B166963001F30F9 /* imagePicker.swift */; };
 		1D1C9DA82B14FC5B009FB162 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D1C9DA72B14FC5B009FB162 /* Poppins-Regular.ttf */; };
@@ -53,6 +52,7 @@
 		1D78F8E02B24652F00327A76 /* DoctorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D78F8DF2B24652F00327A76 /* DoctorViewController.swift */; };
 		1D78F8E62B2466F600327A76 /* RegisterCustomerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D78F8E52B2466F600327A76 /* RegisterCustomerModel.swift */; };
 		1D78F8E82B246AA400327A76 /* RegisterProfessionalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D78F8E72B246AA400327A76 /* RegisterProfessionalModel.swift */; };
+		1D8408BF2B26EE550020DCA1 /* DoctorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8408BE2B26EE550020DCA1 /* DoctorsViewController.swift */; };
 		1DA7C11F2B10639800C6EEB9 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA7C11E2B10639800C6EEB9 /* ForgetPasswordViewController.swift */; };
 		1DB35C832B208B49006E521B /* FillProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB35C822B208B49006E521B /* FillProfileViewController.swift */; };
 		1DB3CDC22B261ECF00032ADB /* UIViewExtansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3CDC12B261ECF00032ADB /* UIViewExtansion.swift */; };
@@ -64,10 +64,10 @@
 		1DC87CF32B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC87CF22B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift */; };
 		1DC9DE6E2B1C982C000A93C7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1DC9DE6D2B1C982C000A93C7 /* Alamofire */; };
 		1DC9DE702B1C9A6A000A93C7 /* MainViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC9DE6F2B1C9A6A000A93C7 /* MainViewControllerExtension.swift */; };
+		1DED26242B29DF7000F03E91 /* HourModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DED26232B29DF7000F03E91 /* HourModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D177D652B21CDC200BB7FBC /* SpecialityDoctorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialityDoctorTableViewCell.swift; sourceTree = "<group>"; };
 		1D1A27EA2B257FDE000ACCE5 /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		1D1BA1112B166963001F30F9 /* imagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imagePicker.swift; sourceTree = "<group>"; };
 		1D1C9DA72B14FC5B009FB162 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -114,6 +114,7 @@
 		1D78F8DF2B24652F00327A76 /* DoctorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorViewController.swift; sourceTree = "<group>"; };
 		1D78F8E52B2466F600327A76 /* RegisterCustomerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCustomerModel.swift; sourceTree = "<group>"; };
 		1D78F8E72B246AA400327A76 /* RegisterProfessionalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProfessionalModel.swift; sourceTree = "<group>"; };
+		1D8408BE2B26EE550020DCA1 /* DoctorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsViewController.swift; sourceTree = "<group>"; };
 		1DA7C11E2B10639800C6EEB9 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		1DB35C822B208B49006E521B /* FillProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillProfileViewController.swift; sourceTree = "<group>"; };
 		1DB3CDC12B261ECF00032ADB /* UIViewExtansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtansion.swift; sourceTree = "<group>"; };
@@ -124,6 +125,7 @@
 		1DC87CF02B1A558F00AE2CDD /* UpcomingAppointmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingAppointmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		1DC87CF22B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialityDoctorsCollectionViewCell.swift; sourceTree = "<group>"; };
 		1DC9DE6F2B1C9A6A000A93C7 /* MainViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerExtension.swift; sourceTree = "<group>"; };
+		1DED26232B29DF7000F03E91 /* HourModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 				1D3430922B1437B60095CDBF /* AppointmentsViewController.swift */,
 				1D3430902B1437AD0095CDBF /* ProfileViewController.swift */,
 				1D78F8DF2B24652F00327A76 /* DoctorViewController.swift */,
+				1D8408BE2B26EE550020DCA1 /* DoctorsViewController.swift */,
 				1D6D69572B259BE400DF9C3D /* AppointmentViewController.swift */,
 			);
 			path = MainViewControllers;
@@ -273,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6D69472B25983300DF9C3D /* CalendarDate.swift */,
+				1DED26232B29DF7000F03E91 /* HourModel.swift */,
 				1D78F8E52B2466F600327A76 /* RegisterCustomerModel.swift */,
 				1D78F8E72B246AA400327A76 /* RegisterProfessionalModel.swift */,
 			);
@@ -283,7 +287,6 @@
 			isa = PBXGroup;
 			children = (
 				1DC87CEE2B1A558100AE2CDD /* TopDoctorsCollectionViewCell.swift */,
-				1D177D652B21CDC200BB7FBC /* SpecialityDoctorTableViewCell.swift */,
 				1DC87CF22B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift */,
 				1DC87CF02B1A558F00AE2CDD /* UpcomingAppointmentCollectionViewCell.swift */,
 				1DC82AA92B25F6DE008486C6 /* SelectHourCollectionViewCell.swift */,
@@ -382,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D3430932B1437B60095CDBF /* AppointmentsViewController.swift in Sources */,
+				1DED26242B29DF7000F03E91 /* HourModel.swift in Sources */,
 				1D34308E2B1399E40095CDBF /* MainTabViewController.swift in Sources */,
 				1DC82AAA2B25F6DE008486C6 /* SelectHourCollectionViewCell.swift in Sources */,
 				1DC87CF12B1A558F00AE2CDD /* UpcomingAppointmentCollectionViewCell.swift in Sources */,
@@ -412,13 +416,13 @@
 				1D1BA1122B166963001F30F9 /* imagePicker.swift in Sources */,
 				1D6D69522B25986700DF9C3D /* CalendarDayFlowLayout.swift in Sources */,
 				1D4AD0CD2B0A765B004117FA /* NavigationViewController.swift in Sources */,
+				1D8408BF2B26EE550020DCA1 /* DoctorsViewController.swift in Sources */,
 				1D6D694B2B25984000DF9C3D /* Extension+Date.swift in Sources */,
 				1D261CC92B0C6E5E00B09848 /* AccountTypeViewController.swift in Sources */,
 				1DB3CDC22B261ECF00032ADB /* UIViewExtansion.swift in Sources */,
 				1D6D69562B25988900DF9C3D /* DateService.swift in Sources */,
 				1D4AD0932B0A465B004117FA /* SceneDelegate.swift in Sources */,
 				1D34308A2B13130B0095CDBF /* CreateNewPasswordViewController.swift in Sources */,
-				1D177D662B21CDC200BB7FBC /* SpecialityDoctorTableViewCell.swift in Sources */,
 				1D6D69582B259BE400DF9C3D /* AppointmentViewController.swift in Sources */,
 				1D6D694C2B25984000DF9C3D /* Extension+UICollectionView.swift in Sources */,
 				1DC87CE82B19F03300AE2CDD /* GradientColor.swift in Sources */,
