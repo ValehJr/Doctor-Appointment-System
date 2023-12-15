@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 struct Professional {
     var firstName:String
     var lastName:String
@@ -68,39 +69,48 @@ class RegisterProfessionalModel {
 
         let request = createURLRequest(url: url, jsonData: jsonData)
 
-        performURLRequest(request) { success in
-            completion(success)
+        performURLRequest(request) { success, errorMessage in
+            if success {
+                completion(success)
+            } else {
+                if let errorMessage = errorMessage {
+                    print("Error: \(errorMessage)")
+                }
+            }
         }
+
     }
 
-    private func performURLRequest(_ request: URLRequest, completion: @escaping (Bool) -> Void) {
+    private func performURLRequest(_ request: URLRequest, completion: @escaping (Bool, String?) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 print("Error: \(error)")
-                completion(false)
+                completion(false, "Network error: \(error.localizedDescription)")
                 return
             }
             
-            if let responseString = String(data: data!, encoding: .utf8) {
-                print("Received data:\(responseString)")
-            }
-
             guard let httpResponse = response as? HTTPURLResponse else {
                 print("Invalid HTTP response")
-                completion(false)
+                completion(false, "Invalid HTTP response")
                 return
             }
 
             if (200...299).contains(httpResponse.statusCode) {
-                completion(true)
+                completion(true, nil)
             } else {
-                print("Unsuccessful HTTP status code: \(httpResponse.statusCode)")
-                completion(false)
+                if let data = data, let responseString = String(data: data, encoding: .utf8) {
+                    print("Received data: \(responseString)")
+                    completion(false, "Unsuccessful HTTP status code: \(httpResponse.statusCode)")
+                } else {
+                    print("Unsuccessful HTTP status code: \(httpResponse.statusCode)")
+                    completion(false, "Unsuccessful HTTP status code: \(httpResponse.statusCode)")
+                }
             }
         }
 
         task.resume()
     }
+
 
     private func createURL() -> URL? {
         guard let encodedURL = URL(string: GlobalConstants.apiUrl + "/auth/signup?type=doctor")?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),

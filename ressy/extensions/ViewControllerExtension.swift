@@ -11,6 +11,11 @@ import SwiftKeychainWrapper
 import JWTDecode
 
 extension UIViewController {
+
+    enum RegistrationType {
+        case customer
+        case doctor
+    }
     
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -46,25 +51,25 @@ extension UIViewController {
         button.setBackgroundImage(UIImage(named: imageName), for: .highlighted)
     }
     
-    func navigateToMainViewController() {
+    func navigateToMainViewControllerCustomer() {
         DispatchQueue.main.async {
             let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "tabBarVC") as? UITabBarController
             self.view.window?.rootViewController = homeViewController
             self.view.window?.makeKeyAndVisible()
         }
     }
-    
-    func navigateToFillViewController() {
+    func navigateToMainViewControllerDoctor() {
         DispatchQueue.main.async {
-            let fillViewController = self.storyboard?.instantiateViewController(withIdentifier: "fillProfileVC") as? FillProfileViewController
-            self.view.window?.rootViewController = fillViewController
+            let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "doctorTabBar") as? UITabBarController
+            self.view.window?.rootViewController = homeViewController
             self.view.window?.makeKeyAndVisible()
         }
     }
     
     func checkJWTAndNavigateToMain() {
-        guard let jwtToken = KeychainWrapper.standard.string(forKey: "jwtToken") else {
-            print("JWT token not found in Keychain")
+        guard let jwtToken = KeychainWrapper.standard.string(forKey: "jwtToken"),
+              let userRole = KeychainWrapper.standard.string(forKey: "userRole") else {
+            print("JWT token or user role not found in Keychain")
             return
         }
         
@@ -75,13 +80,20 @@ extension UIViewController {
             } else {
                 print("JWT token is valid")
                 DispatchQueue.main.async {
-                    self.navigateToMainViewController()
+                    if userRole.lowercased() == "customer" {
+                        self.navigateToMainViewControllerCustomer()
+                    } else if userRole.lowercased() == "doctor" {
+                        self.navigateToMainViewControllerDoctor()
+                    } else {
+                        print("Unknown role: \(userRole)")
+                    }
                 }
             }
         } catch {
             print("Failed to decode JWT token: \(error)")
         }
     }
+
     
     func addShadow(to view: UIView) {
         view.layer.shadowColor = UIColor.lightGray.cgColor

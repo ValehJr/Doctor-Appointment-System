@@ -80,12 +80,10 @@ class MainViewController: UIViewController {
         let tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "homeIcon"), selectedImage: UIImage(named: "homeIconSelected"))
         self.tabBarItem = tabBarItem
     }
+    
     @IBAction func seeAllSpecialitiesAction(_ sender: Any) {
-        print("Click")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let doctorVC = storyboard.instantiateViewController(withIdentifier: "doctorVC") as! DoctorViewController
-        
-        // Push the DoctorViewController onto the navigation stack
+        let doctorVC = storyboard.instantiateViewController(withIdentifier: "doctorsVC") as! DoctorsViewController
         navigationController?.pushViewController(doctorVC, animated: true)
     }
     

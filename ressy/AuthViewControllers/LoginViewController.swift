@@ -114,43 +114,52 @@ class LoginViewController: UIViewController {
             } else if let data = data {
                 if let responseString = String(data: data, encoding: .utf8) {
                     print("Received data: \(responseString)")
-                    
                 }
+
                 guard !data.isEmpty else {
                     print("Error: Empty data received")
                     return
                 }
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        if let jwtToken = json["data"] as? String {
-                            KeychainWrapper.standard.set(jwtToken, forKey: "jwtToken")
-                        } else {
-                            print("Failed to extract JWT token from JSON")
+
+                if let httpResponse = response as? HTTPURLResponse {
+                    if (200...299).contains(httpResponse.statusCode) {
+                        do {
+                            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                                if let jwtToken = json["data"] as? String,
+                                   let role = json["message"] as? String {
+                                    KeychainWrapper.standard.set(jwtToken, forKey: "jwtToken")
+                                    KeychainWrapper.standard.set(role, forKey: "userRole")
+
+                                    DispatchQueue.main.async {
+                                        if role.lowercased() == "customer" {
+                                            self.navigateToMainViewControllerCustomer()
+                                        } else if role.lowercased() == "doctor" {
+                                            self.navigateToMainViewControllerDoctor()
+                                        } else {
+                                            print("Unknown role in the message")
+                                        }
+                                    }
+                                } else {
+                                    print("Failed to extract JWT token or role from JSON")
+                                }
+                            } else {
+                                print("Failed to parse JSON")
+                            }
+                        } catch {
+                            print("Error parsing JSON: \(error)")
                         }
                     } else {
-                        print("Failed to parse JSON")
+                        print("Unsuccessful HTTP status code: \(httpResponse.statusCode)")
                     }
-                } catch {
-                    print("Error parsing JSON: \(error)")
-                }
-            }
-            if let httpResponse = response as? HTTPURLResponse {
-                print("HTTP status code: \(httpResponse.statusCode)")
-                
-                if (200...299).contains(httpResponse.statusCode) {
-                    DispatchQueue.main.async {
-                        self.navigateToMainViewController()
-                    }
-                } else {
-                    print("Unsuccessful HTTP status code: \(httpResponse.statusCode)")
                 }
             }
         }
+
         print("Starting login task")
         task.resume()
     }
-    
-    
+
+
     @IBAction func forgotPasswordAction(_ sender: Any) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

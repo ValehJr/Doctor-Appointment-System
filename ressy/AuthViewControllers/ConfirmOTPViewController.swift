@@ -25,11 +25,6 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
     var password:String?
     var profession:String?
     
-    enum RegistrationType {
-        case customer
-        case doctor
-    }
-    
     var registrationType: RegistrationType?
     
     override func viewDidLoad() {
@@ -100,6 +95,15 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func navigateToFillViewController() {
+        DispatchQueue.main.async {
+            let fillViewController = self.storyboard?.instantiateViewController(withIdentifier: "fillProfileVC") as? FillProfileViewController
+            fillViewController?.registrationType = self.registrationType
+            self.view.window?.rootViewController = fillViewController
+            self.view.window?.makeKeyAndVisible()
+        }
+    }
+    
     @IBAction func submitAction(_ sender: Any) {
         
         let enteredOTP = "\(firstField.text ?? "")\(secondField.text ?? "")\(thirdField.text ?? "")\(fourthField.text ?? "")"
@@ -138,7 +142,6 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
                 print("Profession is nil for professional registration")
                 return
             }
-            print("Proffesional")
             parameters["profession"] = profession
         }
         
@@ -167,8 +170,10 @@ class ConfirmOTPViewController: UIViewController, UITextFieldDelegate {
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                         print("Response JSON: \(json)")
-                        if let jwtToken = json["data"] as? String {
+                        if let jwtToken = json["data"] as? String,
+                           let role = json["message"] as? String {
                             KeychainWrapper.standard.set(jwtToken, forKey: "jwtToken")
+                            KeychainWrapper.standard.set(role, forKey: "userRole")
                         } else {
                             print("Failed to extract JWT token from JSON")
                         }

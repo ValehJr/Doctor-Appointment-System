@@ -17,6 +17,8 @@ class FillProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
     @IBOutlet weak var profileImage: UIImageView!
     
     let fields = ["Male","Female","Other"]
+
+    var registrationType: RegistrationType?
     
     let datePicker = UIDatePicker()
     
@@ -107,7 +109,15 @@ class FillProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
                         let json = try JSONSerialization.jsonObject(with: data!, options: [])
                         if let jsonDict = json as? [String: Any] {
                             print("Response JSON: \(jsonDict)")
-                            self.navigateToMainViewController()
+                            switch self.registrationType{
+                            case .doctor:
+                                self.navigateToMainViewControllerDoctor()
+                            case .customer:
+                                self.navigateToMainViewControllerCustomer()
+                            case .none:
+                                print("error")
+                            }
+                            
                         } else {
                             print("Failed to parse JSON")
                         }

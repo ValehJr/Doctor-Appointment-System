@@ -19,6 +19,9 @@ class DoctorViewController: UIViewController {
     @IBOutlet weak var nameLabelOne: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var backView: UIView!
+    
+    var selectedDoctor: Doctor?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,7 +29,19 @@ class DoctorViewController: UIViewController {
         
         bookButton.layer.cornerRadius = 26
         
-        self.title = "Name"
+        
+        let name = "\(selectedDoctor?.firstName ?? "") \(selectedDoctor?.lastName ?? "")"
+        nameLabelTwo.text = name
+        specialityLabel.text = selectedDoctor?.profession
+        specialityLabelTwo.text = selectedDoctor?.profession
+        profileImage.image = selectedDoctor?.image
+        
+        profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
+        profileImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        profileImage.layer.masksToBounds = true
+        profileImage.contentMode = .scaleAspectFill
+        
+        self.title = name
         let titleFont = UIFont(name: "Poppins-SemiBold", size: 18)
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.font: titleFont!,
@@ -36,7 +51,6 @@ class DoctorViewController: UIViewController {
         changeNavBar(navigationBar:  self.navigationController!.navigationBar, to: .white,titleColor: .black)
         customizeBackButton()
 
-        // Do any additional setup after loading the view.
     }
     
     func changeNavBar(navigationBar: UINavigationBar, to color: UIColor, titleColor: UIColor) {
@@ -69,7 +83,7 @@ class DoctorViewController: UIViewController {
     
     @IBAction func bookAppointmentAction(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let doctorVC = storyboard.instantiateViewController(withIdentifier: "appointmentVC") as! AppointmentViewController
+        let doctorVC = storyboard.instantiateViewController(withIdentifier: "informationVC") as! InformationViewController
         navigationController?.pushViewController(doctorVC, animated: true)
     }
     
