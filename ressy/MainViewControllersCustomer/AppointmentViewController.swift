@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class AppointmentViewController: UIViewController {
     
@@ -28,15 +29,18 @@ class AppointmentViewController: UIViewController {
     
     var dateService = DateService()
     var selectDateMode: Bool = false
-    var selectedDate: Date?
-    var selectedIndexPath: IndexPath?
-    var selectedHour:String?
     
-    let screenSize: CGRect = UIScreen.main.bounds
+    var selectedDateWithoutTime: Date?
+    var formattedSelectedDate: String?
+    var selectedDate: Date?
+    var selectedHour:String?
+    var selectedDoctor:Doctor?
+    var patientName:String?
+    var patientAge:String?
+    var patientGender:String?
+    var patientProblem:String?
     
     var hours: [String] = ["10:00 AM","11:00 AM","12:00 AM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM"]
-    var selectedHourValue: String?
-    
     
     let firstColor = UIColor(red: 235/255, green: 240/255, blue: 254/255, alpha: 1)
     let firstGradColor = UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
@@ -45,46 +49,62 @@ class AppointmentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupUI()
+        setupCollectionView()
+        setupNavigationBar()
+        setupDateService()
+        setupDoctorInfo()
+    }
+    
+    func setupUI() {
         bookButton.layer.cornerRadius = 26
-        
-        calendarCollectionView.dataSource = self
-        calendarCollectionView.delegate = self
-        
-        timeSelectionCollectionView.dataSource = self
-        timeSelectionCollectionView.delegate = self
-        
-        timeSelectionCollectionView.backgroundColor = .white
-        
         dateView.backgroundColor = firstColor
-        
         calendarCollectionView.backgroundColor = firstColor
         monthView.backgroundColor = firstColor
-        
         dateView.layer.cornerRadius = 15
         profileView.layer.cornerRadius = 15
-        
+        timeSelectionCollectionView.backgroundColor = .white
+    }
+    
+    func setupCollectionView() {
+        calendarCollectionView.dataSource = self
+        calendarCollectionView.delegate = self
+        timeSelectionCollectionView.dataSource = self
+        timeSelectionCollectionView.delegate = self
         datePickerView.dataSource = self
         datePickerView.delegate = self
-        
         calendarCollectionView.setup("CalendarDayCVC", CalendarDayFlowLayout())
-        
+    }
+    
+    func setupNavigationBar() {
         self.title = "Book Appointment"
         let titleFont = UIFont(name: "Poppins-SemiBold", size: 18)
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.font: titleFont!,
             NSAttributedString.Key.foregroundColor: UIColor.black
         ]
-        
-        
-        dateService.setMinDate(Date())
-        dateService.setMaxDate(Calendar.current.date(byAdding: .year, value: 1, to: Date())!)
-        
-        refreshTitle()
-        refreshButtons()
         changeNavBar(navigationBar:  self.navigationController!.navigationBar, to: .white,titleColor: .black)
         customizeBackButton()
     }
+    
+    func setupDateService() {
+        dateService.setMinDate(Date())
+        dateService.setMaxDate(Calendar.current.date(byAdding: .year, value: 1, to: Date())!)
+        refreshTitle()
+        refreshButtons()
+    }
+    
+    func setupDoctorInfo() {
+        let name = "\(selectedDoctor?.firstName ?? "") \(selectedDoctor?.lastName ?? "")"
+        nameLabel.text = name
+        specialityLabel.text = selectedDoctor?.profession
+        profileImage.image = selectedDoctor?.image
+        profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
+        profileImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        profileImage.layer.masksToBounds = true
+        profileImage.contentMode = .scaleAspectFill
+    }
+    
     
     func changeNavBar(navigationBar: UINavigationBar, to color: UIColor, titleColor: UIColor) {
         let appearance = UINavigationBarAppearance()
@@ -110,7 +130,6 @@ class AppointmentViewController: UIViewController {
     }
     
     @objc func backButtonPressed() {
-        // Navigate back to the previous view controller
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -136,7 +155,108 @@ class AppointmentViewController: UIViewController {
         }
     }
     @IBAction func bookAppointmentAction(_ sender: Any) {
+        scheduleAppointment()
+    }
+    
+    
+    func scheduleAppointment() {
+        guard let url = URL(string: "http://ressy-appointment-service-1978464186.eu-west-1.elb.amazonaws.com/appointment/schedule") else {
+            print("Invalid URL")
+            return
+        }
         
+        guard let patName = patientName, let patAge = patientAge, let patGender = patientGender, let patProblem = patientProblem else {
+            return
+        }
+        
+        guard let jwtToken = KeychainWrapper.standard.string(forKey: "jwtToken") else {
+            print("JWT token not found in Keychain")
+            return
+        }
+        
+        let appointmentData: [String: Any] = [
+            "doctorName": "\(selectedDoctor?.firstName ?? "") \(selectedDoctor?.lastName ?? "")",
+            "doctorProfession": selectedDoctor?.profession ?? "",
+            "patientName": patName,
+            "patientAge": patAge,
+            "patientGender": patGender,
+            "patientProblem": patProblem,
+            "appointmentDate": formatDate(),
+            "appointmentTime": formatTime(),
+            "doctorPhoto": selectedDoctor?.base64 ?? ""
+        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: appointmentData)
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.httpBody = jsonData
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("Bearer \(jwtToken)", forHTTPHeaderField: "Authorization")
+            
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
+                } else if let data = data {
+                    let responseString = String(data: data, encoding: .utf8)
+                    print("Response: \(responseString ?? "")")
+                    DispatchQueue.main.async {
+                        if let mainVC = self.navigationController?.viewControllers.first(where: { $0 is MainViewController }) {
+                            self.navigationController?.popToViewController(mainVC, animated: true)
+                            self.showSuccess(message: "Appointment scheduled successfully.")
+                        }
+                    }
+                }
+            }
+            
+            task.resume()
+        } catch {
+            print("Error encoding JSON: \(error.localizedDescription)")
+        }
+    }
+    
+    private func formatDate() -> String {
+        guard let selectedDate = selectedDate else {
+            return "Selected date or hour is nil"
+        }
+        
+        return "\(formattedSelectedDate!)"
+    }
+    
+    private func formatTime() -> String {
+        guard let selectedHour = selectedHour else {
+            return "Selected date or hour is nil"
+        }
+        
+        let hourFormatter = DateFormatter()
+           hourFormatter.dateFormat = "hh:mm a"
+
+           if let date = hourFormatter.date(from: selectedHour) {
+               hourFormatter.dateFormat = "HH:mm:ss"
+               let formattedHour = hourFormatter.string(from: date)
+               return "\(formattedHour)"
+           } else {
+               print("Error formatting hour")
+               return "Error"
+           }
+    }
+    
+    private func formatHour() -> String {
+        guard let selectedHour = selectedHour else {
+            return "Selected hour is nil"
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm a"
+        
+        if let date = dateFormatter.date(from: selectedHour) {
+            dateFormatter.dateFormat = "HH:mm"
+            return dateFormatter.string(from: date)
+        } else {
+            print("Error formatting hour")
+            return "Error"
+        }
     }
     
     @IBAction func nextMonthAction(_ sender: Any) {
@@ -161,6 +281,7 @@ class AppointmentViewController: UIViewController {
         datePickerView.isHidden = !selectDateMode
         if !selectDateMode { reloadValues() }
     }
+    
     @IBAction func previousMonthAction(_ sender: Any) {
         dateService.goLastMonth()
         reloadValues()
@@ -224,6 +345,16 @@ extension AppointmentViewController: UICollectionViewDelegate, UICollectionViewD
         if collectionView == calendarCollectionView {
             guard let selectedDate = dateService.daySelected(indexPath) else { return }
             self.selectedDate = selectedDate
+            self.selectedDateWithoutTime = Calendar.current.startOfDay(for: selectedDate)
+            
+            if let selectedDateWithoutTime = selectedDateWithoutTime {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                let formattedDate = dateFormatter.string(from: selectedDateWithoutTime)
+                formattedSelectedDate = formattedDate
+            } else {
+                print("No date selected")
+            }
             reloadValues()
         } else if collectionView == timeSelectionCollectionView {
             for selectedItemIndexPath in timeSelectionCollectionView.indexPathsForSelectedItems ?? [] {

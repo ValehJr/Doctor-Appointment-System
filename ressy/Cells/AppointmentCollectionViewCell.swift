@@ -8,6 +8,7 @@
 import UIKit
 
 class AppointmentCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var backAppointmentView: UIView!
     @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var firstButton: UIButton!

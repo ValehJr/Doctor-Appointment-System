@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D0684D92B10A41C00EE2C8D /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 1D0684D82B10A41C00EE2C8D /* JWTDecode */; };
+		1D082FBD2B2CE6940021EC0D /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D082FBC2B2CE6940021EC0D /* SearchField.swift */; };
 		1D1A27EB2B257FDE000ACCE5 /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1A27EA2B257FDE000ACCE5 /* CustomDatePicker.swift */; };
 		1D1BA1122B166963001F30F9 /* imagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA1112B166963001F30F9 /* imagePicker.swift */; };
 		1D1C9DA82B14FC5B009FB162 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D1C9DA72B14FC5B009FB162 /* Poppins-Regular.ttf */; };
@@ -41,6 +42,7 @@
 		1D4AD0CF2B0A7708004117FA /* RegisterCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0CE2B0A7708004117FA /* RegisterCustomerViewController.swift */; };
 		1D4AD0D22B0A7A84004117FA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AD0D12B0A7A84004117FA /* LoginViewController.swift */; };
 		1D54B89C2B11F88D00A0AECA /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 1D54B89B2B11F88D00A0AECA /* SwiftKeychainWrapper */; };
+		1D5F58342B2CEC220056E6E1 /* RSKImageCropper in Frameworks */ = {isa = PBXBuildFile; productRef = 1D5F58332B2CEC220056E6E1 /* RSKImageCropper */; };
 		1D6D69482B25983300DF9C3D /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6D69472B25983300DF9C3D /* CalendarDate.swift */; };
 		1D6D694B2B25984000DF9C3D /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6D69492B25984000DF9C3D /* Extension+Date.swift */; };
 		1D6D694C2B25984000DF9C3D /* Extension+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6D694A2B25984000DF9C3D /* Extension+UICollectionView.swift */; };
@@ -71,10 +73,12 @@
 		1DC87CF32B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC87CF22B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift */; };
 		1DC9DE6E2B1C982C000A93C7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1DC9DE6D2B1C982C000A93C7 /* Alamofire */; };
 		1DC9DE702B1C9A6A000A93C7 /* MainViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC9DE6F2B1C9A6A000A93C7 /* MainViewControllerExtension.swift */; };
+		1DD37FC22B2D73E4004A00ED /* AppointmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD37FC12B2D73E4004A00ED /* AppointmentModel.swift */; };
 		1DED26262B2A119D00F03E91 /* AppointmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DED26252B2A119D00F03E91 /* AppointmentCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D082FBC2B2CE6940021EC0D /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		1D1A27EA2B257FDE000ACCE5 /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		1D1BA1112B166963001F30F9 /* imagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imagePicker.swift; sourceTree = "<group>"; };
 		1D1C9DA72B14FC5B009FB162 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 		1DC87CF02B1A558F00AE2CDD /* UpcomingAppointmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingAppointmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		1DC87CF22B1A55BD00AE2CDD /* SpecialityDoctorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialityDoctorsCollectionViewCell.swift; sourceTree = "<group>"; };
 		1DC9DE6F2B1C9A6A000A93C7 /* MainViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerExtension.swift; sourceTree = "<group>"; };
+		1DD37FC12B2D73E4004A00ED /* AppointmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentModel.swift; sourceTree = "<group>"; };
 		1DED26252B2A119D00F03E91 /* AppointmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DC9DE6E2B1C982C000A93C7 /* Alamofire in Frameworks */,
+				1D5F58342B2CEC220056E6E1 /* RSKImageCropper in Frameworks */,
 				1D54B89C2B11F88D00A0AECA /* SwiftKeychainWrapper in Frameworks */,
 				1D0684D92B10A41C00EE2C8D /* JWTDecode in Frameworks */,
 			);
@@ -189,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				1DC87CE72B19F03300AE2CDD /* GradientColor.swift */,
+				1D082FBC2B2CE6940021EC0D /* SearchField.swift */,
 				1D261CC22B0C428300B09848 /* ViewMove.swift */,
 				1D261CC42B0C42D400B09848 /* PaddedTextField.swift */,
 				1D95D69B2B2ACBFD00B605A4 /* PaddedTextView.swift */,
@@ -294,6 +301,7 @@
 			children = (
 				1D6D69472B25983300DF9C3D /* CalendarDate.swift */,
 				1D95D69F2B2ADE8C00B605A4 /* DoctorModel.swift */,
+				1DD37FC12B2D73E4004A00ED /* AppointmentModel.swift */,
 				1D78F8E52B2466F600327A76 /* RegisterCustomerModel.swift */,
 				1D78F8E72B246AA400327A76 /* RegisterProfessionalModel.swift */,
 			);
@@ -343,6 +351,7 @@
 				1D0684D82B10A41C00EE2C8D /* JWTDecode */,
 				1D54B89B2B11F88D00A0AECA /* SwiftKeychainWrapper */,
 				1DC9DE6D2B1C982C000A93C7 /* Alamofire */,
+				1D5F58332B2CEC220056E6E1 /* RSKImageCropper */,
 			);
 			productName = ressy;
 			productReference = 1D4AD08D2B0A465B004117FA /* ressy.app */;
@@ -377,6 +386,7 @@
 				1D0684D72B10A41C00EE2C8D /* XCRemoteSwiftPackageReference "JWTDecode" */,
 				1D54B89A2B11F88D00A0AECA /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				1DC9DE6C2B1C982C000A93C7 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				1D5F58322B2CEC220056E6E1 /* XCRemoteSwiftPackageReference "RSKImageCropper" */,
 			);
 			productRefGroup = 1D4AD08E2B0A465B004117FA /* Products */;
 			projectDirPath = "";
@@ -423,6 +433,7 @@
 				1D3430882B13128D0095CDBF /* ForgetOTPViewController.swift in Sources */,
 				1D95D6A02B2ADE8C00B605A4 /* DoctorModel.swift in Sources */,
 				1D34308C2B134C270095CDBF /* CustomSwitch.swift in Sources */,
+				1D082FBD2B2CE6940021EC0D /* SearchField.swift in Sources */,
 				1D261CC32B0C428300B09848 /* ViewMove.swift in Sources */,
 				1D261CCD2B0C7B6A00B09848 /* ConfirmOTPViewController.swift in Sources */,
 				1D261CC52B0C42D400B09848 /* PaddedTextField.swift in Sources */,
@@ -432,6 +443,7 @@
 				1D91853B2B2C2DED00783868 /* MainViewControllerDoctor.swift in Sources */,
 				1D78F8E62B2466F600327A76 /* RegisterCustomerModel.swift in Sources */,
 				1D4AD0952B0A465B004117FA /* EntryViewController.swift in Sources */,
+				1DD37FC22B2D73E4004A00ED /* AppointmentModel.swift in Sources */,
 				1D9185392B2C2DD600783868 /* MainTabViewControllerDoctor.swift in Sources */,
 				1DC87CEF2B1A558100AE2CDD /* TopDoctorsCollectionViewCell.swift in Sources */,
 				1D91853D2B2C2DF600783868 /* ProfileViewControllerDoctor.swift in Sources */,
@@ -711,6 +723,14 @@
 				minimumVersion = 4.0.1;
 			};
 		};
+		1D5F58322B2CEC220056E6E1 /* XCRemoteSwiftPackageReference "RSKImageCropper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ruslanskorb/RSKImageCropper.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		1DC9DE6C2B1C982C000A93C7 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -731,6 +751,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1D54B89A2B11F88D00A0AECA /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
+		};
+		1D5F58332B2CEC220056E6E1 /* RSKImageCropper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D5F58322B2CEC220056E6E1 /* XCRemoteSwiftPackageReference "RSKImageCropper" */;
+			productName = RSKImageCropper;
 		};
 		1DC9DE6D2B1C982C000A93C7 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

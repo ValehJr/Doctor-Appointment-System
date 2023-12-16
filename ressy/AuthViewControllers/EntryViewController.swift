@@ -15,50 +15,51 @@ class EntryViewController: UIViewController {
     @IBOutlet weak var privacyLabel: UILabel!
     @IBOutlet weak var termsLabel: UILabel!
     @IBOutlet weak var logoLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.termsLabel.isUserInteractionEnabled = true
-        self.privacyLabel.isUserInteractionEnabled = true
-        
-        let termsGesture = UITapGestureRecognizer(target: self, action: #selector(tappedOnLabel(_:)))
-        termsGesture.numberOfTapsRequired = 1
-        self.termsLabel.addGestureRecognizer(termsGesture)
-        
-        let termsText = "By tapping 'Sign in' you agree to our Terms and Conditions"
-        let attributedStringForTerms = NSMutableAttributedString(string: termsText)
-        
-        let termsRange = (termsText as NSString).range(of: "Terms and Conditions")
-        
-        attributedStringForTerms.addAttributes([.font: UIFont.boldSystemFont(ofSize: 12), .underlineStyle: NSUnderlineStyle.single.rawValue], range: termsRange)
-        
-        self.termsLabel.attributedText = attributedStringForTerms
-        
-        let privacyGesture = UITapGestureRecognizer(target: self, action: #selector(tappedOnLabel(_:)))
-        privacyGesture.numberOfTapsRequired = 1
-        self.privacyLabel.addGestureRecognizer(privacyGesture)
-        
-        let privacyText = "Learn how we process your data in our Privacy Policy"
-        let attributedString = NSMutableAttributedString(string: privacyText)
-        
-        let privacyRange = (privacyText as NSString).range(of: "Privacy Policy")
-        
-        attributedString.addAttributes([.font: UIFont.boldSystemFont(ofSize: 12), .underlineStyle: NSUnderlineStyle.single.rawValue], range: privacyRange)
-        
-        self.privacyLabel.attributedText = attributedString
-        
-        self.createAccountButton.clipsToBounds = true
-        self.singInButton.clipsToBounds = true
-        
-        self.createAccountButton.layer.cornerRadius = 26
-        
-        self.singInButton.layer.cornerRadius = 26
-        self.singInButton.layer.borderColor = UIColor.white.cgColor
-        self.singInButton.layer.borderWidth = 1
-        
-       checkJWTAndNavigateToMain()
-        
-        self.addGradientToView(backView, firstColor:UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0) , secondColor: UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0))
+
+        setupLabels()
+        setupButtons()
+        checkJWTAndNavigateToMain()
+        addGradientToView()
+    }
+
+    func setupLabels() {
+        termsLabel.isUserInteractionEnabled = true
+        privacyLabel.isUserInteractionEnabled = true
+
+        setupTapGesture(for: termsLabel, with: "Terms and Conditions")
+        setupTapGesture(for: privacyLabel, with: "Privacy Policy")
+    }
+
+    func setupTapGesture(for label: UILabel, with keyword: String) {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedOnLabel(_:)))
+        tapGesture.numberOfTapsRequired = 1
+
+        let text = label.text ?? ""
+        let attributedString = NSMutableAttributedString(string: text)
+
+        let range = (text as NSString).range(of: keyword)
+        attributedString.addAttributes([.font: UIFont.boldSystemFont(ofSize: 12), .underlineStyle: NSUnderlineStyle.single.rawValue], range: range)
+
+        label.attributedText = attributedString
+        label.addGestureRecognizer(tapGesture)
+    }
+
+    func setupButtons() {
+        createAccountButton.clipsToBounds = true
+        singInButton.clipsToBounds = true
+
+        createAccountButton.layer.cornerRadius = 26
+
+        singInButton.layer.cornerRadius = 26
+        singInButton.layer.borderColor = UIColor.white.cgColor
+        singInButton.layer.borderWidth = 1
+    }
+
+    func addGradientToView() {
+        addGradientToView(backView, firstColor: UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0), secondColor: UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0))
     }
     
     @IBAction func createAccountAction(_ sender: Any) {

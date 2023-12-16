@@ -63,7 +63,7 @@ class DoctorsViewController: UIViewController {
                                 return nil
                             }
                             
-                            let doctor = Doctor(firstName: firstName, lastName: lastName, profession: profession, photo: compressedImageData, image: image)
+                            let doctor = Doctor(firstName: firstName, lastName: lastName, profession: profession, photo: compressedImageData, image: image,base64: photoString)
                             return doctor
                         }
                         

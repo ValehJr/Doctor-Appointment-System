@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "rskimagecropper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ruslanskorb/RSKImageCropper.git",
+      "state" : {
+        "revision" : "0cbf9cbb77b6763c80eb4d44673395acf5a8d93c",
+        "version" : "4.0.0"
+      }
+    },
+    {
       "identity" : "swiftkeychainwrapper",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/jrendel/SwiftKeychainWrapper",

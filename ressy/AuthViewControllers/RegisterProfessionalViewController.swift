@@ -26,44 +26,69 @@ class RegisterProfessionalViewController: UIViewController,UIPickerViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        configureButton()
+        configureTextFields()
+        configurePickerView()
+        configurePasswordHideButtons()
+        configurePlaceholders()
+        configureKeyboardDismissal()
+        configureAlpha()
+        configureGradient()
+    }
+
+    func configureButton() {
         createAccountButton.clipsToBounds = true
-        
-        self.nameField.layer.cornerRadius = 15
-        self.surnameField.layer.cornerRadius = 15
-        self.emailField.layer.cornerRadius = 15
-        self.passwordField.layer.cornerRadius = 15
-        self.confirmPasswordField.layer.cornerRadius = 15
-        self.fieldChooseField.layer.cornerRadius = 15
-        self.createAccountButton.layer.cornerRadius = 26
-        
+        createAccountButton.layer.cornerRadius = 26
+    }
+
+    func configureTextFields() {
+        let cornerRadius: CGFloat = 15
+        nameField.layer.cornerRadius = cornerRadius
+        surnameField.layer.cornerRadius = cornerRadius
+        emailField.layer.cornerRadius = cornerRadius
+        passwordField.layer.cornerRadius = cornerRadius
+        confirmPasswordField.layer.cornerRadius = cornerRadius
+        fieldChooseField.layer.cornerRadius = cornerRadius
+    }
+
+    func configurePickerView() {
         let pickerView = UIPickerView()
         pickerView.delegate = self
-        
         fieldChooseField.inputView = pickerView
-        
+    }
+
+    func configurePasswordHideButtons() {
         passwordHideButton.setBackgroundImage(UIImage(named: "closedEyeIcon"), for: .normal)
         confirmPasswordHideButton.setBackgroundImage(UIImage(named: "closedEyeIcon"), for: .normal)
-        
+    }
+
+    func configurePlaceholders() {
         let textColor = UIColor(red: 154/255.0, green: 162/255.0, blue: 178/255.0, alpha: 1)
-        
+
         nameField.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSAttributedString.Key.foregroundColor: textColor])
         surnameField.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSAttributedString.Key.foregroundColor: textColor])
         emailField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: textColor])
         passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: textColor])
         confirmPasswordField.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes: [NSAttributedString.Key.foregroundColor: textColor])
         fieldChooseField.attributedPlaceholder = NSAttributedString(string: "Choose Field", attributes: [NSAttributedString.Key.foregroundColor: textColor])
-        
+    }
+
+    func configureKeyboardDismissal() {
         hideKeyboardWhenTappedAround()
-        
+    }
+
+    func configureAlpha() {
         createAccountButton.alpha = 0.75
-        
+    }
+
+    func configureGradient() {
         let firstColor = UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
         let secondColor = UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0)
-        
+
         addGradientToView(createAccountButton, firstColor: firstColor, secondColor: secondColor)
-        
     }
+
     
     override func viewDidAppear(_ animated: Bool) {
         let firstColor = UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)

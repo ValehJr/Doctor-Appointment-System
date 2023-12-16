@@ -17,35 +17,49 @@ class ProfileViewControllerDoctor: UIViewController {
     @IBOutlet weak var settingsView: UIView!
     @IBOutlet weak var joinedSinceLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        configureUI()
+        configureTabBarItem()
+        fetchAndDisplayUserInfo()
+        fetchAndDisplayProfileImage()
+    }
+
+    func configureUI() {
+        editButton.layer.cornerRadius = 16
         
-        self.editButton.layer.cornerRadius = 16
+        configureRoundedBorders(for: settingsView)
+        configureRoundedBorders(for: otherView)
+        configureRoundedBorders(for: notificationView)
         
-        settingsView.layer.borderColor = UIColor.white.cgColor
-        settingsView.layer.borderWidth = 1
-        settingsView.layer.cornerRadius = 10
-        
-        otherView.layer.borderColor = UIColor.white.cgColor
-        otherView.layer.borderWidth = 1
-        otherView.layer.cornerRadius = 10
-        
-        notificationView.layer.borderColor = UIColor.white.cgColor
-        notificationView.layer.borderWidth = 1
-        notificationView.layer.cornerRadius = 10
-        
-        profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
-        profileImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        profileImage.layer.masksToBounds = true
-        profileImage.contentMode = .scaleAspectFill
+        configureRoundedProfileImage()
         
         addShadow(to: settingsView)
         addShadow(to: otherView)
         addShadow(to: notificationView)
-        
+    }
+
+    func configureRoundedBorders(for view: UIView) {
+        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderWidth = 1
+        view.layer.cornerRadius = 10
+    }
+
+    func configureRoundedProfileImage() {
+        profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
+        profileImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        profileImage.layer.masksToBounds = true
+        profileImage.contentMode = .scaleAspectFill
+    }
+
+    func configureTabBarItem() {
         let tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profileIcon"), selectedImage: UIImage(named: "profileIconSelected"))
         self.tabBarItem = tabBarItem
-        
+    }
+
+    func fetchAndDisplayUserInfo() {
         fetchUserInfo { userInfo in
             if let userInfo = userInfo {
                 DispatchQueue.main.async {
@@ -55,10 +69,11 @@ class ProfileViewControllerDoctor: UIViewController {
             } else {
                 self.showAlert(message: "Unable to fetch your information!")
             }
-            
         }
-        
-        self.retrieveImageFromServer { (image) in
+    }
+
+    func fetchAndDisplayProfileImage() {
+        retrieveImageFromServer { (image) in
             if let image = image {
                 DispatchQueue.main.async {
                     self.profileImage.image = image
@@ -67,9 +82,8 @@ class ProfileViewControllerDoctor: UIViewController {
                 print("Failed to retrieve image")
             }
         }
-        
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         let tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profileIcon"), selectedImage: UIImage(named: "profileIconSelected"))
         self.tabBarItem = tabBarItem

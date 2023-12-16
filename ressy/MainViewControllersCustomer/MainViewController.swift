@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class MainViewController: UIViewController {
     
@@ -14,32 +15,62 @@ class MainViewController: UIViewController {
     @IBOutlet weak var doctorSpecialityCollectionView: UICollectionView!
     @IBOutlet weak var topDoctorsCollectionView: UICollectionView!
     @IBOutlet weak var upcomingAppointmentCollectionView: UICollectionView!
-    @IBOutlet weak var searchField: PaddedTextField!
+    @IBOutlet weak var searchField: SearchField!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
-    let imageNames = ["General","Dentist","Otology","Cardiology","Intestine","Pediatric","Herbal","More"]
+    let imageNames = ["General","Dentist","Otology","Cardiology","Intestine","Pediatric","Herbal"]
+    
+    var appointments: [Appointment] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureUpcomingAppointmentCollectionView()
+        configureTopDoctorsCollectionView()
+        configureDoctorSpecialityCollectionView()
+        configureProfileImage()
+        configureTabBarItem()
+        configureTextField()
+        fetchAndDisplayUserInfo()
+        fetchAndDisplayProfileImage()
+        fetchUpcomingAppointment()
+    }
+    
+    func configureTextField() {
+        let paddedField = SearchField()
+        searchField.layer.cornerRadius = 15
+        
+        searchField = paddedField
+    }
+    
+    func configureUpcomingAppointmentCollectionView() {
         upcomingAppointmentCollectionView.dataSource = self
         upcomingAppointmentCollectionView.delegate = self
-        
         upcomingAppointmentCollectionView.layer.cornerRadius = 15
-        
+    }
+    
+    func configureTopDoctorsCollectionView() {
         topDoctorsCollectionView.dataSource = self
         topDoctorsCollectionView.delegate = self
         topDoctorsCollectionView.backgroundColor = .white
-        
+    }
+    
+    func configureDoctorSpecialityCollectionView() {
         doctorSpecialityCollectionView.dataSource = self
         doctorSpecialityCollectionView.delegate = self
-        
+    }
+    
+    func configureProfileImage() {
         profileImage.layer.cornerRadius = 24
-        
+    }
+    
+    func configureTabBarItem() {
         let tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "homeIcon"), selectedImage: UIImage(named: "homeIconSelected"))
         self.tabBarItem = tabBarItem
-        
+    }
+    
+    func fetchAndDisplayUserInfo() {
         fetchUserInfo { userInfo in
             if let userInfo = userInfo {
                 DispatchQueue.main.async {
@@ -48,10 +79,11 @@ class MainViewController: UIViewController {
             } else {
                 self.showAlert(message: "Unable to fetch your information!")
             }
-            
         }
-        
-        self.retrieveImageFromServer { (image) in
+    }
+    
+    func fetchAndDisplayProfileImage() {
+        retrieveImageFromServer { (image) in
             if let image = image {
                 DispatchQueue.main.async {
                     self.profileImage.image = image
@@ -62,10 +94,9 @@ class MainViewController: UIViewController {
         }
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Hide the navigation bar
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
@@ -79,6 +110,7 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         let tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "homeIcon"), selectedImage: UIImage(named: "homeIconSelected"))
         self.tabBarItem = tabBarItem
+        fetchUpcomingAppointment()
     }
     
     @IBAction func seeAllSpecialitiesAction(_ sender: Any) {
@@ -87,6 +119,83 @@ class MainViewController: UIViewController {
         navigationController?.pushViewController(doctorVC, animated: true)
     }
     
+    func fetchUpcomingAppointment() {
+        guard let encodedURL = URL(string:"http://ressy-appointment-service-1978464186.eu-west-1.elb.amazonaws.com/appointment?type=Upcoming" )?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let url = URL(string: encodedURL) else {
+            return
+        }
+        
+        guard let jwtToken = KeychainWrapper.standard.string(forKey: "jwtToken") else {
+            print("JWT token not found in Keychain")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("Bearer \(jwtToken)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            } else if let data = data {
+                guard !data.isEmpty else {
+                    print("Error: Empty data received")
+                    return
+                }
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                       let dataDict = json["data"] as? [[String: Any]] {
+                        self.appointments = dataDict.compactMap { appointmentData in
+                            guard
+                                let doctorName = appointmentData["doctorName"] as? String,
+                                let doctorProfession = appointmentData["doctorProfession"] as? String,
+                                let scheduleDate = appointmentData["scheduleDate"] as? String,
+                                let scheduleTime = appointmentData["scheduleTime"] as? String,
+                                let patientName = appointmentData["patientName"] as? String,
+                                let patientGender = appointmentData["patientGender"] as? String,
+                                let patientAge = appointmentData["patientAge"] as? Int,
+                                let patientProblem = appointmentData["patientProblem"] as? String,
+                                let doctorPhotoBase64 = appointmentData["doctorPhoto"] as? String,
+                                let photoData = Data(base64Encoded: doctorPhotoBase64) else {
+                                print("Failed to parse data for appointment: \(appointmentData)")
+                                return nil
+                            }
+                            
+                            guard let image = UIImage(data: photoData) else {
+                                print("Failed to create UIImage for doctor: \(appointmentData)")
+                                return nil
+                            }
+                            
+                            let appointment = Appointment(
+                                doctorName: doctorName,
+                                doctorProfession: doctorProfession,
+                                scheduleDate: scheduleDate,
+                                scheduleTime: scheduleTime,
+                                patientName: patientName,
+                                patientGender: patientGender,
+                                patientAge: patientAge,
+                                patientProblem: patientProblem,
+                                doctorPhotoBase64: doctorPhotoBase64,
+                                image:image
+                            )
+                            return appointment
+                        }
+                        DispatchQueue.main.async {
+                            self.upcomingAppointmentCollectionView.reloadData()
+                        }
+                    } else {
+                        print("Failed to parse JSON")
+                    }
+                } catch {
+                    print("Error parsing JSON: \(error)")
+                }
+            }
+            if let httpResponse = response as? HTTPURLResponse {
+                print("HTTP Status Code: \(httpResponse.statusCode)")
+            }
+        }.resume()
+    }
 }
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
@@ -102,13 +211,10 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-
-
-
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == upcomingAppointmentCollectionView {
-            return 1
+            return appointments.count
         }
         
         if collectionView == topDoctorsCollectionView {
@@ -123,6 +229,7 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == upcomingAppointmentCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "upcomingAppointmentID", for: indexPath) as! UpcomingAppointmentCollectionViewCell
+            let appointment = appointments[indexPath.item]
             let firstColor = UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
             let secondColor = UIColor(red: 146/255.0, green: 153/255.0, blue: 253/255.0, alpha: 1.0)
             addGradientToView(cell.backgorundView, firstColor: firstColor, secondColor: secondColor)
@@ -131,6 +238,16 @@ extension MainViewController: UICollectionViewDataSource {
             cell.calendarView.layer.cornerRadius = 15
             cell.timeView.layer.cornerRadius = 15
             cell.backgorundView.frame = cell.bounds
+            cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width / 2
+            cell.profileImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            cell.profileImage.layer.masksToBounds = true
+            cell.profileImage.contentMode = .scaleAspectFill
+            cell.nameLabel.text = appointment.doctorName
+            cell.doctorLabel.text = appointment.doctorProfession
+            cell.profileImage.image = appointment.image
+            cell.dateLabel.text = appointment.scheduleDate
+            cell.timeLabel.text = appointment.scheduleTime
+            print(cell.timeLabel)
             return cell
         }
         if collectionView == topDoctorsCollectionView {

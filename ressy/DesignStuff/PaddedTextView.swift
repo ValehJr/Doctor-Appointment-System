@@ -7,45 +7,43 @@
 
 import UIKit
 
-extension UITextView {
-    func leftSpace() {
-        self.textContainerInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+class PaddedTextView: UITextView {
+    
+    private let dynamicPadding: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    private let placeholderText = "Describe your problem"
+    
+    init() {
+        super.init(frame: .zero, textContainer: nil)
+        setupTextView()
     }
     
-    func addPlaceholder(_ placeholder: String) {
-        let placeholderLabel = UILabel()
-        placeholderLabel.text = placeholder
-        placeholderLabel.font = UIFont(name: "Poppins-SemiBold", size: 14)
-        placeholderLabel.textColor = UIColor.lightGray
-        placeholderLabel.tag = 999
-        placeholderLabel.isHidden = !text.isEmpty
-        addSubview(placeholderLabel)
-
-        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            placeholderLabel.topAnchor.constraint(equalTo: topAnchor, constant: textContainerInset.top),
-            placeholderLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: textContainerInset.left + 5),
-            placeholderLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -textContainerInset.right)
-        ])
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupTextView()
+    }
+    
+    private func setupTextView() {
+        textContainerInset = dynamicPadding
+        text = placeholderText
+        textColor = .lightGray
+        delegate = self
     }
 }
 
-extension InformationViewController: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        let placeholderLabel = textView.viewWithTag(999) as? UILabel
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            placeholderLabel?.isHidden = !textView.text.isEmpty
+extension PaddedTextView: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == placeholderText {
+            textView.text = nil
+            textView.textColor = .black
         }
     }
 
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        let placeholderLabel = textView.viewWithTag(999) as? UILabel
-        placeholderLabel?.isHidden = true
-    }
-    
     func textViewDidEndEditing(_ textView: UITextView) {
-        let placeholderLabel = textView.viewWithTag(999) as? UILabel
-        placeholderLabel?.isHidden = !textView.text.isEmpty
+        if textView.text.isEmpty {
+            textView.text = placeholderText
+            textView.textColor = .lightGray
+        }
     }
 }
 

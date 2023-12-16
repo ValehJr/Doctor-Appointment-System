@@ -83,8 +83,9 @@ class DoctorViewController: UIViewController {
     
     @IBAction func bookAppointmentAction(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let doctorVC = storyboard.instantiateViewController(withIdentifier: "informationVC") as! InformationViewController
-        navigationController?.pushViewController(doctorVC, animated: true)
+        let informationVC = storyboard.instantiateViewController(withIdentifier: "informationVC") as! InformationViewController
+        informationVC.selectedDoctor = selectedDoctor
+        navigationController?.pushViewController(informationVC, animated: true)
     }
     
     

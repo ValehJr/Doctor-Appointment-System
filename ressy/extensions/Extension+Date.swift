@@ -1,10 +1,3 @@
-//
-//  Extension+Date.swift
-//  CustomDatePicker
-//
-//  Created by Recep Oğuzhan Şenoğlu on 22.09.2023.
-//
-
 import Foundation
 
 extension Date {
@@ -20,15 +13,12 @@ extension Date {
         var calendar = Calendar(identifier: .gregorian)
         calendar.firstWeekday = 2
         calendar.locale = Locale(identifier: "en_US_POSIX")
-        let components = calendar.dateComponents([.minute, .hour, .day, .month, .year, .weekday, .weekOfMonth], from: self)
+        let components = calendar.dateComponents([.day, .month, .year, .weekday, .weekOfMonth], from: self)
         return components
     }
     
-    func minute() -> Int { components().minute ?? 0}
     
-    func hour() -> Int { components().hour ?? 0}
-    
-    func day() -> Int {components().day ?? 1 }
+    func day() -> Int { components().day ?? 1 }
     
     func month() -> Int { components().month ?? 1 }
     
@@ -83,14 +73,10 @@ extension Date {
         return self.updateComponent(.month, self.month() - 1)
     }
     
-    func updateComponent(_ component:Calendar.Component, _ value: Int) -> Date {
+    func updateComponent(_ component: Calendar.Component, _ value: Int) -> Date {
         let calendar = Calendar.current
         let oldValue: Int
         switch component {
-        case .hour:
-            oldValue = self.hour()
-        case .minute:
-            oldValue = self.minute()
         case .day:
             oldValue = self.day()
         case .month:

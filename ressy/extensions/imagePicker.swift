@@ -7,20 +7,44 @@
 
 import UIKit
 import SwiftKeychainWrapper
+import RSKImageCropper
 
-extension UIViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension UIViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, RSKImageCropViewControllerDelegate {
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            if let fillViewController = self as? FillProfileViewController {
-                fillViewController.profileImage.image = pickedImage
-            }
-            saveImageToServer(image: pickedImage)
+        guard let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            dismiss(animated: true, completion: nil)
+            return
         }
-        dismiss(animated: true, completion: nil)
+        
+        // Create an instance of RSKImageCropViewController
+        let imageCropViewController = RSKImageCropViewController(image: pickedImage)
+        imageCropViewController.delegate = self
+        
+        // Customize the crop mask if needed
+        imageCropViewController.cropMode = .circle
+        
+        // Present the RSKImageCropViewController
+        present(imageCropViewController, animated: true, completion: nil)
     }
     
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - RSKImageCropViewControllerDelegate
+    
+    public func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    public func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect, rotationAngle: CGFloat) {
+        if let fillViewController = self as? FillProfileViewController {
+            fillViewController.profileImage.image = croppedImage
+        }
+        saveImageToServer(image: croppedImage)
+        
+        // Dismiss the RSKImageCropViewController
         dismiss(animated: true, completion: nil)
     }
     

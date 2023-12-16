@@ -41,6 +41,7 @@ class CreateNewPasswordViewController: UIViewController {
     @IBAction func confirmPasswordHideAction(_ sender: Any) {
         togglePasswordVisibility(for: confirmPasswordField, with: confirmPasswordHideButton)
     }
+    
     @IBAction func confirmAction(_ sender: Any) {
         guard let password = passwordField.text, let confirmPassword = confirmPasswordField.text, let email = self.email else {
             print("Failed: Missing required fields")
