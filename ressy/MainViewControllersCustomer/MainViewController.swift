@@ -13,7 +13,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var doctorSpecialityCollectionView: UICollectionView!
-    @IBOutlet weak var topDoctorsCollectionView: UICollectionView!
     @IBOutlet weak var upcomingAppointmentCollectionView: UICollectionView!
     @IBOutlet weak var searchField: SearchField!
     @IBOutlet weak var profileImage: UIImageView!
@@ -27,38 +26,38 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         configureUpcomingAppointmentCollectionView()
-        configureTopDoctorsCollectionView()
         configureDoctorSpecialityCollectionView()
         configureProfileImage()
         configureTabBarItem()
         configureTextField()
         fetchAndDisplayUserInfo()
         fetchAndDisplayProfileImage()
-        fetchUpcomingAppointment()
+        doctorSpecialityCollectionView.isUserInteractionEnabled = true
+        hideKeyboardWhenTappedAround()
+        
+        
     }
     
     func configureTextField() {
         let paddedField = SearchField()
         searchField.layer.cornerRadius = 15
-        
         searchField = paddedField
+        let textColor = UIColor(red: 154/255.0, green: 162/255.0, blue: 178/255.0, alpha: 1)
+        searchField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: textColor])
     }
     
     func configureUpcomingAppointmentCollectionView() {
         upcomingAppointmentCollectionView.dataSource = self
         upcomingAppointmentCollectionView.delegate = self
         upcomingAppointmentCollectionView.layer.cornerRadius = 15
+        upcomingAppointmentCollectionView.backgroundColor = .white
     }
-    
-    func configureTopDoctorsCollectionView() {
-        topDoctorsCollectionView.dataSource = self
-        topDoctorsCollectionView.delegate = self
-        topDoctorsCollectionView.backgroundColor = .white
-    }
+
     
     func configureDoctorSpecialityCollectionView() {
         doctorSpecialityCollectionView.dataSource = self
         doctorSpecialityCollectionView.delegate = self
+        doctorSpecialityCollectionView.backgroundColor = .white
     }
     
     func configureProfileImage() {
@@ -102,8 +101,6 @@ class MainViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        // Show the navigation bar when leaving the view controller
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
@@ -111,6 +108,7 @@ class MainViewController: UIViewController {
         let tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "homeIcon"), selectedImage: UIImage(named: "homeIconSelected"))
         self.tabBarItem = tabBarItem
         fetchUpcomingAppointment()
+        fetchAndDisplayUserInfo()
     }
     
     @IBAction func seeAllSpecialitiesAction(_ sender: Any) {
@@ -120,7 +118,11 @@ class MainViewController: UIViewController {
     }
     
     func fetchUpcomingAppointment() {
-        guard let encodedURL = URL(string:"http://ressy-appointment-service-1978464186.eu-west-1.elb.amazonaws.com/appointment?type=Upcoming" )?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+        guard let role = KeychainWrapper.standard.string(forKey: "userRole") else {
+            return
+        }
+        
+        guard let encodedURL = URL(string:"http://ressy-appointment-service-1978464186.eu-west-1.elb.amazonaws.com/appointment?type=Upcoming&user=\(role)" )?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let url = URL(string: encodedURL) else {
             return
         }
@@ -150,6 +152,7 @@ class MainViewController: UIViewController {
                             guard
                                 let doctorName = appointmentData["doctorName"] as? String,
                                 let doctorProfession = appointmentData["doctorProfession"] as? String,
+                                let doctorEmail = appointmentData["doctorEmail"] as? String,
                                 let scheduleDate = appointmentData["scheduleDate"] as? String,
                                 let scheduleTime = appointmentData["scheduleTime"] as? String,
                                 let patientName = appointmentData["patientName"] as? String,
@@ -161,15 +164,13 @@ class MainViewController: UIViewController {
                                 print("Failed to parse data for appointment: \(appointmentData)")
                                 return nil
                             }
-                            
-                            guard let image = UIImage(data: photoData) else {
-                                print("Failed to create UIImage for doctor: \(appointmentData)")
-                                return nil
-                            }
+
+                            let image = UIImage(data: photoData)
                             
                             let appointment = Appointment(
                                 doctorName: doctorName,
                                 doctorProfession: doctorProfession,
+                                doctorEmail: doctorEmail,
                                 scheduleDate: scheduleDate,
                                 scheduleTime: scheduleTime,
                                 patientName: patientName,
@@ -202,10 +203,8 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == upcomingAppointmentCollectionView {
             return CGSize(width: upcomingAppointmentCollectionView.bounds.width, height: collectionView.bounds.height)
-        } else if collectionView == topDoctorsCollectionView {
-            return CGSize(width: topDoctorsCollectionView.bounds.width, height: 100)
         } else if collectionView == doctorSpecialityCollectionView {
-            return CGSize(width: doctorSpecialityCollectionView.bounds.width, height: 82)
+            return CGSize(width: doctorSpecialityCollectionView.bounds.width, height:  collectionView.bounds.height)
         }
         return CGSize.zero
     }
@@ -215,10 +214,6 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == upcomingAppointmentCollectionView {
             return appointments.count
-        }
-        
-        if collectionView == topDoctorsCollectionView {
-            return 5
         }
         if collectionView == doctorSpecialityCollectionView {
             return imageNames.count
@@ -242,18 +237,12 @@ extension MainViewController: UICollectionViewDataSource {
             cell.profileImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
             cell.profileImage.layer.masksToBounds = true
             cell.profileImage.contentMode = .scaleAspectFill
-            cell.nameLabel.text = appointment.doctorName
+            cell.nameLabel.text = "Dr " + appointment.doctorName
             cell.doctorLabel.text = appointment.doctorProfession
             cell.profileImage.image = appointment.image
             cell.dateLabel.text = appointment.scheduleDate
             cell.timeLabel.text = appointment.scheduleTime
-            print(cell.timeLabel)
-            return cell
-        }
-        if collectionView == topDoctorsCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "topDoctorsID", for: indexPath) as! TopDoctorsCollectionViewCell
-            cell.backgroundColor = UIColor.white
-            cell.nameLabel.text = "Valeh"
+            cell.timeLabel.text = String(appointment.scheduleTime.prefix(5))
             return cell
         }
         if collectionView == doctorSpecialityCollectionView {
@@ -261,13 +250,27 @@ extension MainViewController: UICollectionViewDataSource {
             let images = imageNames[indexPath.item]
             cell.imageView.image = UIImage(named: images)
             cell.doctorLabel.text = images
+            
             if let widthConstraint = cell.imageView.constraints.first(where: { $0.identifier == "0x60000213ecb0" }) {
                 widthConstraint.isActive = false
             }
             return cell
-            
         }
         
         return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == doctorSpecialityCollectionView {
+            let selectedSpecialty = imageNames[indexPath.item]
+            showDoctorsViewController(for: selectedSpecialty,isFromCellClick: true)
+        }
+    }
+    func showDoctorsViewController(for specialty: String, isFromCellClick: Bool) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let doctorsVC = storyboard.instantiateViewController(withIdentifier: "doctorsVC") as! DoctorsViewController
+        doctorsVC.selectedSpecialty = specialty
+        doctorsVC.isFromCellClick = isFromCellClick
+        navigationController?.pushViewController(doctorsVC, animated: true)
     }
 }

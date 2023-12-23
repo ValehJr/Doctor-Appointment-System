@@ -38,6 +38,10 @@ class LoginViewController: UIViewController {
         
         addGradientToView(singInButton, firstColor: firstColor, secondColor: secondColor)
         
+        let textColor = UIColor(red: 154/255.0, green: 162/255.0, blue: 178/255.0, alpha: 1)
+        emailField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

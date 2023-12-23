@@ -20,7 +20,7 @@ class RegisterProfessionalViewController: UIViewController,UIPickerViewDataSourc
     @IBOutlet weak var surnameField: PaddedTextField!
     @IBOutlet weak var nameField: PaddedTextField!
     
-    let fields = ["General","Dentist","Otology","Cardiology","Intestine","Pediatric","Herbal","Orthopedics","Neurology","Dermatology","Ophthalmology","Other"]
+    let fields = ["General","Dentist","Otology","Cardiology","Intestine","Pediatric","Herbal"]
     
     var registerModel = RegisterProfessionalModel()
     

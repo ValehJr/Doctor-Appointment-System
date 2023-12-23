@@ -8,7 +8,7 @@
 import UIKit
 
 extension UINavigationController {
-    func customizeBackButton() {
+    func customizeBackButtonNav() {
         let backIcon = UIImage(named: "backIcon")
         navigationBar.backIndicatorImage = backIcon
         navigationBar.backIndicatorTransitionMaskImage = backIcon

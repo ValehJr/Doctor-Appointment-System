@@ -43,6 +43,11 @@ class InformationViewController: UIViewController, UIPickerViewDataSource, UIPic
         changeNavBar(navigationBar:  self.navigationController!.navigationBar, to: .white,titleColor: .black)
         customizeBackButton()
         
+        let textColor = UIColor(red: 154/255.0, green: 162/255.0, blue: 178/255.0, alpha: 1)
+        nameField.attributedPlaceholder = NSAttributedString(string: "Full Name", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        ageField.attributedPlaceholder = NSAttributedString(string: "Age", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        genderField.attributedPlaceholder = NSAttributedString(string: "Gender", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        
         
         hideKeyboardWhenTappedAround()
 
@@ -68,22 +73,6 @@ class InformationViewController: UIViewController, UIPickerViewDataSource, UIPic
         navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
     }
     
-    func customizeBackButton() {
-        let backButton = UIBarButtonItem()
-        backButton.title = ""
-        
-        let backButtonImage = UIImage(named: "backIcon")?.withRenderingMode(.alwaysOriginal)
-        backButton.image = backButtonImage
-        
-        backButton.target = self
-        backButton.action = #selector(backButtonPressed)
-        
-        self.navigationItem.leftBarButtonItem = backButton
-    }
-    
-    @objc func backButtonPressed() {
-        self.navigationController?.popViewController(animated: true)
-    }
     
     @IBAction func nextAction(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

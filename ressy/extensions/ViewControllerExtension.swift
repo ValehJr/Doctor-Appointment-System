@@ -124,4 +124,23 @@ extension UIViewController {
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonBlack
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for: .default)
     }
+    
+    func customizeBackButton() {
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        
+        let backButtonImage = UIImage(named: "backIcon")?.withRenderingMode(.alwaysOriginal)
+        backButton.image = backButtonImage
+        
+        backButton.target = self
+        backButton.action = #selector(backButtonPressed)
+        
+        self.navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc func backButtonPressed() {
+        // Navigate back to the previous view controller
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }

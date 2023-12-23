@@ -26,6 +26,9 @@ class ProfileViewController: UIViewController{
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     
+    var firstName:String?
+    var lastName:String?
+    
     var gradient: CAGradientLayer?
     
     override func viewDidLoad() {
@@ -75,6 +78,8 @@ class ProfileViewController: UIViewController{
                 DispatchQueue.main.async {
                     self.nameLabel.text = "\(userInfo.firstname) \(userInfo.lastname)"
                     self.joinedSinceLabel.text = "Joined since: \(userInfo.joinedSince)"
+                    self.firstName = userInfo.firstname
+                    self.lastName = userInfo.lastname
                 }
             } else {
                 self.showAlert(message: "Unable to fetch your information!")
@@ -98,11 +103,26 @@ class ProfileViewController: UIViewController{
     override func viewDidAppear(_ animated: Bool) {
         let tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profileIcon"), selectedImage: UIImage(named: "profileIconSelected"))
         self.tabBarItem = tabBarItem
+        fetchAndDisplayUserInfo()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     
     @IBAction func editAction(_ sender: Any) {
-        // Handle edit action if needed
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let editVC = storyboard.instantiateViewController(withIdentifier: "editVC") as! EditPatientViewController
+        editVC.initialFirstName = firstName
+        editVC.initialLastName = lastName
+        navigationController?.pushViewController(editVC, animated: true)
     }
     
     @IBAction func languageAction(_ sender: Any) {

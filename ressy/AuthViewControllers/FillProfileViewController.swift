@@ -17,7 +17,7 @@ class FillProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
     @IBOutlet weak var profileImage: UIImageView!
     
     let fields = ["Male","Female","Other"]
-
+    
     var registrationType: RegistrationType?
     
     let datePicker = UIDatePicker()
@@ -52,6 +52,7 @@ class FillProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
     }
     
@@ -131,6 +132,27 @@ class FillProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
             print("Error converting parameters to JSON: \(error)")
         }
         
+    }
+    
+    
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let editedImage = info[.editedImage] as? UIImage {
+            print("Using edited image")
+            profileImage.image = editedImage
+            saveImageToServer(image: editedImage)
+        } else if let originalImage = info[.originalImage] as? UIImage {
+            print("Using original image")
+            profileImage.image = originalImage
+            saveImageToServer(image: originalImage)
+        } else {
+            print("No valid image found")
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
     
     @objc func datePickerValueChanged() {

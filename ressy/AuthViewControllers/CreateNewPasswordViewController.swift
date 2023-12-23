@@ -32,6 +32,10 @@ class CreateNewPasswordViewController: UIViewController {
         submitButton.alpha = 0.75
         
         hideKeyboardWhenTappedAround()
+        
+        let textColor = UIColor(red: 154/255.0, green: 162/255.0, blue: 178/255.0, alpha: 1)
+        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: textColor])
+        confirmPasswordField.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes: [NSAttributedString.Key.foregroundColor: textColor])
     }
     
     @IBAction func passwordHIdeAction(_ sender: Any) {

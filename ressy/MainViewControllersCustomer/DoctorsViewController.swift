@@ -12,18 +12,50 @@ class DoctorsViewController: UIViewController {
     @IBOutlet weak var doctorCollectionView: UICollectionView!
     
     var doctors:[Doctor] = []
+    var selectedSpecialty:String?
+    var isFromCellClick = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         doctorCollectionView.dataSource = self
         doctorCollectionView.delegate = self
-        
+
         fetchDoctors()
+        
+        self.title = selectedSpecialty
+        let titleFont = UIFont(name: "Poppins-SemiBold", size: 18)
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: titleFont!,
+            NSAttributedString.Key.foregroundColor: UIColor.black
+        ]
+        
+        changeNavBar(navigationBar:  self.navigationController!.navigationBar, to: .white,titleColor: .black)
+        customizeBackButton()
+    }
+    
+    func changeNavBar(navigationBar: UINavigationBar, to color: UIColor, titleColor: UIColor) {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = color
+        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: titleColor]
+        
+        navigationBar.standardAppearance = appearance
+        navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
     }
     
     func fetchDoctors() {
-        guard let url = URL(string: "http://ressy-home-service-alb-2048404408.eu-west-1.elb.amazonaws.com/doctor/all") else {
+        var urlString: String
+        
+        if isFromCellClick, let selectedSpecialty = selectedSpecialty {
+            urlString = "http://ressy-home-service-alb-2048404408.eu-west-1.elb.amazonaws.com/doctor?profession=\(selectedSpecialty)"
+        } else {
+            urlString = "http://ressy-home-service-alb-2048404408.eu-west-1.elb.amazonaws.com/doctor/all"
+        }
+        
+        print(urlString)
+        
+        guard let url = URL(string: urlString) else {
             print("Invalid URL")
             return
         }
@@ -47,6 +79,7 @@ class DoctorsViewController: UIViewController {
                                 let firstName = doctorData["firstname"] as? String,
                                 let lastName = doctorData["lastname"] as? String,
                                 let profession = doctorData["profession"] as? String,
+                                let email = doctorData["email"] as? String?,
                                 let photoString = doctorData["photoBase64"] as? String,
                                 let photoData = Data(base64Encoded: photoString) else {
                                 print("Failed to parse data for doctor: \(doctorData)")
@@ -63,7 +96,7 @@ class DoctorsViewController: UIViewController {
                                 return nil
                             }
                             
-                            let doctor = Doctor(firstName: firstName, lastName: lastName, profession: profession, photo: compressedImageData, image: image,base64: photoString)
+                            let doctor = Doctor(firstName: firstName, lastName: lastName, profession: profession, photo: compressedImageData, image: image,base64: photoString,email:email)
                             return doctor
                         }
                         

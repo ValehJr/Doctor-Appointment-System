@@ -18,9 +18,11 @@ class ProfileViewControllerDoctor: UIViewController {
     @IBOutlet weak var joinedSinceLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
+    var firstName:String?
+    var lastName:String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureUI()
         configureTabBarItem()
         fetchAndDisplayUserInfo()
@@ -65,6 +67,8 @@ class ProfileViewControllerDoctor: UIViewController {
                 DispatchQueue.main.async {
                     self.nameLabel.text = "\(userInfo.firstname) \(userInfo.lastname)"
                     self.joinedSinceLabel.text = "Joined since: \(userInfo.joinedSince)"
+                    self.firstName = userInfo.firstname
+                    self.lastName = userInfo.lastname
                 }
             } else {
                 self.showAlert(message: "Unable to fetch your information!")
@@ -83,10 +87,29 @@ class ProfileViewControllerDoctor: UIViewController {
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         let tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profileIcon"), selectedImage: UIImage(named: "profileIconSelected"))
         self.tabBarItem = tabBarItem
+        fetchAndDisplayUserInfo()
+    }
+    
+    @IBAction func editAction(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let editVC = storyboard.instantiateViewController(withIdentifier: "editVC") as! EditPatientViewController
+        editVC.initialFirstName = firstName
+        editVC.initialLastName = lastName
+        navigationController?.pushViewController(editVC, animated: true)
     }
     
     @IBAction func logoutAction(_ sender: Any) {
@@ -97,6 +120,4 @@ class ProfileViewControllerDoctor: UIViewController {
             self.present(navigationController, animated: true, completion: nil)
         }
     }
-    
-    
 }

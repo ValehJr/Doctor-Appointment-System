@@ -29,7 +29,6 @@ class DoctorViewController: UIViewController {
         
         bookButton.layer.cornerRadius = 26
         
-        
         let name = "\(selectedDoctor?.firstName ?? "") \(selectedDoctor?.lastName ?? "")"
         nameLabelTwo.text = name
         specialityLabel.text = selectedDoctor?.profession
@@ -40,6 +39,8 @@ class DoctorViewController: UIViewController {
         profileImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         profileImage.layer.masksToBounds = true
         profileImage.contentMode = .scaleAspectFill
+        
+        descriptionTextView.backgroundColor = .white
         
         self.title = name
         let titleFont = UIFont(name: "Poppins-SemiBold", size: 18)
@@ -61,24 +62,6 @@ class DoctorViewController: UIViewController {
         
         navigationBar.standardAppearance = appearance
         navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
-    }
-    
-    func customizeBackButton() {
-        let backButton = UIBarButtonItem()
-        backButton.title = ""
-        
-        let backButtonImage = UIImage(named: "backIcon")?.withRenderingMode(.alwaysOriginal)
-        backButton.image = backButtonImage
-        
-        backButton.target = self
-        backButton.action = #selector(backButtonPressed)
-        
-        self.navigationItem.leftBarButtonItem = backButton
-    }
-    
-    @objc func backButtonPressed() {
-        // Navigate back to the previous view controller
-        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func bookAppointmentAction(_ sender: Any) {

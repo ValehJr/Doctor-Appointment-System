@@ -7,46 +7,9 @@
 
 import UIKit
 import SwiftKeychainWrapper
-import RSKImageCropper
 
-extension UIViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, RSKImageCropViewControllerDelegate {
+extension UIViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
-            dismiss(animated: true, completion: nil)
-            return
-        }
-        
-        // Create an instance of RSKImageCropViewController
-        let imageCropViewController = RSKImageCropViewController(image: pickedImage)
-        imageCropViewController.delegate = self
-        
-        // Customize the crop mask if needed
-        imageCropViewController.cropMode = .circle
-        
-        // Present the RSKImageCropViewController
-        present(imageCropViewController, animated: true, completion: nil)
-    }
-    
-    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    // MARK: - RSKImageCropViewControllerDelegate
-    
-    public func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    public func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect, rotationAngle: CGFloat) {
-        if let fillViewController = self as? FillProfileViewController {
-            fillViewController.profileImage.image = croppedImage
-        }
-        saveImageToServer(image: croppedImage)
-        
-        // Dismiss the RSKImageCropViewController
-        dismiss(animated: true, completion: nil)
-    }
     
     func saveImageToServer(image: UIImage) {
         guard let jwtToken = KeychainWrapper.standard.string(forKey: "jwtToken") else {
@@ -157,7 +120,6 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
                    let imageDataString = jsonDict["data"] as? String,
                    let imageData = Data(base64Encoded: imageDataString),
                    let image = UIImage(data: imageData) {
-                    
                     DispatchQueue.main.async {
                         completion(image)
                     }

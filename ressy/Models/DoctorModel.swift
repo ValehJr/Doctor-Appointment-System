@@ -14,13 +14,15 @@ struct Doctor: Codable {
     var photo: Data?
     var image: UIImage?
     var base64: String
+    var email:String?
     
     enum CodingKeys: String, CodingKey {
         case firstName = "firstname"
         case lastName = "lastname"
         case profession
         case photo
-        case base64 // Corrected the typo here
+        case base64
+        case email
     }
 }
 

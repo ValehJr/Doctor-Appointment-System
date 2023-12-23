@@ -27,6 +27,8 @@ class AppointmentViewController: UIViewController {
     @IBOutlet weak var specialityLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     
+    var patientImage:UIImage?
+
     var dateService = DateService()
     var selectDateMode: Bool = false
     
@@ -40,7 +42,7 @@ class AppointmentViewController: UIViewController {
     var patientGender:String?
     var patientProblem:String?
     
-    var hours: [String] = ["10:00 AM","11:00 AM","12:00 AM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM"]
+    var hours: [String] = ["10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM","03:00 PM","04:00 PM","05:00 PM","06:00 PM"]
     
     let firstColor = UIColor(red: 235/255, green: 240/255, blue: 254/255, alpha: 1)
     let firstGradColor = UIColor(red: 157/255.0, green: 206/255.0, blue: 255/255.0, alpha: 1.0)
@@ -116,23 +118,6 @@ class AppointmentViewController: UIViewController {
         navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
     }
     
-    func customizeBackButton() {
-        let backButton = UIBarButtonItem()
-        backButton.title = ""
-        
-        let backButtonImage = UIImage(named: "backIcon")?.withRenderingMode(.alwaysOriginal)
-        backButton.image = backButtonImage
-        
-        backButton.target = self
-        backButton.action = #selector(backButtonPressed)
-        
-        self.navigationItem.leftBarButtonItem = backButton
-    }
-    
-    @objc func backButtonPressed() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
     
     func reloadValues() {
         refreshTitle()
@@ -158,7 +143,6 @@ class AppointmentViewController: UIViewController {
         scheduleAppointment()
     }
     
-    
     func scheduleAppointment() {
         guard let url = URL(string: "http://ressy-appointment-service-1978464186.eu-west-1.elb.amazonaws.com/appointment/schedule") else {
             print("Invalid URL")
@@ -177,6 +161,7 @@ class AppointmentViewController: UIViewController {
         let appointmentData: [String: Any] = [
             "doctorName": "\(selectedDoctor?.firstName ?? "") \(selectedDoctor?.lastName ?? "")",
             "doctorProfession": selectedDoctor?.profession ?? "",
+            "doctorEmail":selectedDoctor?.email ?? "",
             "patientName": patName,
             "patientAge": patAge,
             "patientGender": patGender,
@@ -202,10 +187,12 @@ class AppointmentViewController: UIViewController {
                     let responseString = String(data: data, encoding: .utf8)
                     print("Response: \(responseString ?? "")")
                     DispatchQueue.main.async {
-                        if let mainVC = self.navigationController?.viewControllers.first(where: { $0 is MainViewController }) {
-                            self.navigationController?.popToViewController(mainVC, animated: true)
-                            self.showSuccess(message: "Appointment scheduled successfully.")
+                        if let navigationController = self.navigationController {
+                            navigationController.popToRootViewController(animated: true)
+                        } else {
+                            self.dismiss(animated: true, completion: nil)
                         }
+                        self.showSuccess(message: "Appointment scheduled successfully.")
                     }
                 }
             }
@@ -230,16 +217,16 @@ class AppointmentViewController: UIViewController {
         }
         
         let hourFormatter = DateFormatter()
-           hourFormatter.dateFormat = "hh:mm a"
-
-           if let date = hourFormatter.date(from: selectedHour) {
-               hourFormatter.dateFormat = "HH:mm:ss"
-               let formattedHour = hourFormatter.string(from: date)
-               return "\(formattedHour)"
-           } else {
-               print("Error formatting hour")
-               return "Error"
-           }
+        hourFormatter.dateFormat = "hh:mm a"
+        
+        if let date = hourFormatter.date(from: selectedHour) {
+            hourFormatter.dateFormat = "HH:mm:ss"
+            let formattedHour = hourFormatter.string(from: date)
+            return "\(formattedHour)"
+        } else {
+            print("Error formatting hour")
+            return "Error"
+        }
     }
     
     private func formatHour() -> String {

@@ -11,6 +11,7 @@ import UIKit
 struct Appointment: Codable {
     let doctorName: String
     let doctorProfession: String
+    let doctorEmail:String
     let scheduleDate: String
     let scheduleTime:String
     let patientName: String
@@ -21,12 +22,13 @@ struct Appointment: Codable {
     var image:UIImage?
     
     enum CodingKeys: String, CodingKey {
-        case doctorName, doctorProfession, scheduleDate, scheduleTime ,patientName, patientGender, patientAge, patientProblem, doctorPhotoBase64
+        case doctorName, doctorProfession,doctorEmail ,scheduleDate, scheduleTime ,patientName, patientGender, patientAge, patientProblem, doctorPhotoBase64
     }
 }
 struct CancellledAppointment: Codable {
     let doctorName: String
     let doctorProfession: String
+    let doctorEmail:String
     let appointmentDate: String // Update field name
     let appointmentTime: String 
     let patientName: String
@@ -35,6 +37,6 @@ struct CancellledAppointment: Codable {
     let patientProblem: String
     
     enum CodingKeys: String, CodingKey {
-        case doctorName, doctorProfession, appointmentDate, appointmentTime ,patientName, patientGender, patientAge, patientProblem
+        case doctorName, doctorProfession, doctorEmail ,appointmentDate, appointmentTime ,patientName, patientGender, patientAge, patientProblem
     }
 }
